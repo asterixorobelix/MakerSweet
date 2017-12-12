@@ -1,12 +1,16 @@
-﻿using System;
+﻿using MakerSweet.Services;
+using MakerSweet.Services.Models;
+using System;
 
-namespace MakerSweet.Console
+namespace MakerSweet.ConsoleApp
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
+            var file = new File("f");
+            var svg = new SvgFile("s");
+            var tsp = new TspFile("t");
         }
     }
 }
