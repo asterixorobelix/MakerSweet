@@ -10,5 +10,6 @@ namespace MakerSweet.Services.Models
         {
             FileExtension = ".svg";
         }
+        public int Dimension { get; set; }
     }
 }

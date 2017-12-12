@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace MakerSweet.Services.Models
+namespace MakerSweet.Services.Helpers
 {
-    interface IFile
+    public interface IStippler
     {
     }
 }

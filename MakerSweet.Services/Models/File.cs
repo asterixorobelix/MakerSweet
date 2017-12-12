@@ -3,7 +3,7 @@ using System;
 
 namespace MakerSweet.Services
 {
-    public class File:IFile
+    public class File
     {
         public File(string name)
         {

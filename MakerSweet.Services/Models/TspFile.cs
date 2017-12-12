@@ -2,6 +2,24 @@
 using System.Collections.Generic;
 using System.Text;
 
+/*TSP lib format:
+    NAME : a280
+    COMMENT : drilling problem(Ludwig)
+    TYPE : TSP
+    DIMENSION: 280
+    EDGE_WEIGHT_TYPE : EUC_2D
+    NODE_COORD_SECTION
+      1 288 149
+      2 288 129
+      3 270 133
+      4 256 141
+      5 256 157
+      6 246 157
+      ...
+      ..
+      EOF
+  */
+
 namespace MakerSweet.Services.Models
 {
     public class TspFile:File
@@ -9,8 +27,17 @@ namespace MakerSweet.Services.Models
         public TspFile(string name):base(name)
         {
             FileExtension = ".tsp";
+            FileHeader = GetFileHeader(this);
         }
-        private readonly string EndofFile = "EOF";
-        private string FileHeader = ($"NAME: {0} \nCOMMENT: {1} {2} \nTYPE: TSP\nDIMENSION: {3} \nEDGE_WEIGHT_TYPE : EUC_2D \nNODE_COORD_SECTION");
+        public readonly string EndofFile = "EOF";
+
+        public string FileHeader { get; set; }
+        public string SvgFileName { get; set; }
+        public int Dimension { get; set; }
+
+        public static string GetFileHeader(TspFile tspFile)
+        {
+            return $"NAME: {tspFile.FullName} \nCOMMENT: {tspFile.DateCreated} {tspFile.SvgFileName} \nTYPE: TSP\nDIMENSION: {tspFile.Dimension} \nEDGE_WEIGHT_TYPE : EUC_2D \nNODE_COORD_SECTION";
+        }
     }
 }
