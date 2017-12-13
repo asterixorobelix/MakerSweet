@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 /*
  * http://www.warrensbrain.com/gcode-to-english-translator.html

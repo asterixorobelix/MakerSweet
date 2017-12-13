@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-/*TSP lib format:
+﻿/*TSP lib format:
     NAME : a280
     COMMENT : drilling problem(Ludwig)
     TYPE : TSP
