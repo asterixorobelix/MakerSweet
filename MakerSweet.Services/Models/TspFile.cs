@@ -31,8 +31,8 @@ namespace MakerSweet.Services.Models
         }
         public readonly string EndofFile = "EOF";
 
-        public string FileHeader { get; set; }
-        public string SvgFileName { get; set; }
+        public string FileHeader { get; private set; }
+        public string SvgFileName { get; private set; }
         public int Dimension { get; set; }
 
         public static string GetFileHeader(TspFile tspFile)

@@ -12,9 +12,9 @@ namespace MakerSweet.Services
             FileExtension = ".txt";
             FullName = FileName + FileExtension;
         }
-        internal string FileExtension { get; set; }
+        public string FileExtension { get; internal set; }
         public string FileName { get; set; }
         public string FullName { get; set; }
-        public DateTime DateCreated { get; set; }
+        public DateTime DateCreated { get; private set; }
     }
 }

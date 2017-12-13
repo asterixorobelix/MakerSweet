@@ -21,6 +21,8 @@ namespace MakerSweet.ConsoleApp
             var file = new File("f");
             var svg = new SvgFile("s");
             var tsp = new TspFile("t");
+            var gcode = new GcodeFile("g");
+            var footer = gcode.FileFooter;
         }
 
         private static void ConfigureServices(IServiceCollection serviceCollection)
