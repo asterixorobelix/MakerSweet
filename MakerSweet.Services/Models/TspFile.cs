@@ -27,6 +27,7 @@ namespace MakerSweet.Services.Models
         public TspFile(string name):base(name)
         {
             FileExtension = ".tsp";
+            FullName = FileName + FileExtension;
             FileHeader = GetFileHeader(this);
         }
         public readonly string EndofFile = "EOF";

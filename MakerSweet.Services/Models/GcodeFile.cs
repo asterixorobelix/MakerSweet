@@ -14,6 +14,7 @@ namespace MakerSweet.Services.Models
         public GcodeFile(string name) : base(name)
         {
             FileExtension = ".nc";
+            FullName = FileName + FileExtension;
             FileFooter = GetFileFooter();
             FileHeader = GetFileHeader(this.DateCreated);
         }
