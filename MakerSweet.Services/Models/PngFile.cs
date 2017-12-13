@@ -9,7 +9,7 @@ namespace MakerSweet.Services.Models
         public PngFile(string name) : base(name)
         {
             FileExtension = ".png";
-            FullName = FileName + FileExtension;
+            FullFileName = FileName + FileExtension;
         }
     }
 }

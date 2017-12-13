@@ -16,13 +16,15 @@ namespace MakerSweet.ConsoleApp
 
             // create service provider
             var serviceProvider = serviceCollection.BuildServiceProvider();
-            var fileServices = serviceProvider.GetRequiredService<IStippler>();
-
             var file = new File("f");
             var svg = new SvgFile("s");
             var tsp = new TspFile("t");
             var gcode = new GcodeFile("g");
             var footer = gcode.FileFooter;
+            var png = new PngFile("p");
+
+            var fileServices = serviceProvider.GetRequiredService<IStippler>();
+            var command = fileServices.GetConsoleCommand(png,svg,1,2);
         }
 
         private static void ConfigureServices(IServiceCollection serviceCollection)

@@ -27,7 +27,7 @@ namespace MakerSweet.Services.Models
         public TspFile(string name):base(name)
         {
             FileExtension = ".tsp";
-            FullName = FileName + FileExtension;
+            FullFileName = FileName + FileExtension;
             FileHeader = GetFileHeader(this);
         }
         public readonly string EndofFile = "EOF";
@@ -38,7 +38,7 @@ namespace MakerSweet.Services.Models
 
         public static string GetFileHeader(TspFile tspFile)
         {
-            return $"NAME: {tspFile.FullName} \nCOMMENT: {tspFile.DateCreated} {tspFile.SvgFileName} \nTYPE: TSP\nDIMENSION: {tspFile.Dimension} \nEDGE_WEIGHT_TYPE : EUC_2D \nNODE_COORD_SECTION";
+            return $"NAME: {tspFile.FullFileName} \nCOMMENT: {tspFile.DateCreated} {tspFile.SvgFileName} \nTYPE: TSP\nDIMENSION: {tspFile.Dimension} \nEDGE_WEIGHT_TYPE : EUC_2D \nNODE_COORD_SECTION";
         }
     }
 }
