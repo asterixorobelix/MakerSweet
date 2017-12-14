@@ -7,6 +7,10 @@ using System.Diagnostics;
 using static System.Net.Mime.MediaTypeNames;
 using System.IO;
 
+/*
+ * https://www.ofoct.com/viewer/svg-viewer-online.html
+ * */
+
 namespace MakerSweet.ConsoleApp
 {
     class Program
@@ -24,7 +28,7 @@ namespace MakerSweet.ConsoleApp
             var png = new PngFile(filename);
 
             var fileServices = serviceProvider.GetRequiredService<IStippler>();
-            var command = fileServices.GetConsoleCommand(png,svg,10,1);
+            var command = fileServices.GetConsoleCommand(png,svg,100,1);
             var currentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
             string[] fileArray = Directory.GetFiles(currentDirectory);
             ProcessStartInfo startInfo = new ProcessStartInfo($"{currentDirectory}voronoi.exe", command);
