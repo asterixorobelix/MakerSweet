@@ -1,4 +1,5 @@
 ﻿using MakerSweet.Services.Models;
+using System;
 
 /*
 http://www.saliences.com/projects/npr/stippling/index.html
@@ -25,7 +26,7 @@ namespace MakerSweet.Services.Helpers
 
         public string GetConsoleCommand(PngFile pngFile, SvgFile svgFile, int stipples, double sizingFactor)
         {
-            svgName = $"S{stipples}Z{sizingFactor}NoOverlap{svgFile.FullFileName}";
+            svgName = $"S{stipples}Z{Convert.ToString(sizingFactor).Replace(".","point")}NoOverlap{svgFile.FullFileName}";
             return $"-s {stipples} -z {sizingFactor} {_NOOVERLAP} {filepath}{pngFile.FullFileName} {filepath}{svgName}";
         }
     }

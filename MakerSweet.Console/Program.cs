@@ -28,11 +28,10 @@ namespace MakerSweet.ConsoleApp
             var png = new PngFile(filename);
 
             var fileServices = serviceProvider.GetRequiredService<IStippler>();
-            var command = fileServices.GetConsoleCommand(png,svg,100,1);
+            var command = fileServices.GetConsoleCommand(png,svg,1000,0.7);
             var currentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
             string[] fileArray = Directory.GetFiles(currentDirectory);
             ProcessStartInfo startInfo = new ProcessStartInfo($"{currentDirectory}voronoi.exe", command);
-            Console.WriteLine(startInfo);
             Process p = Process.Start(startInfo);
             p.WaitForExit();
             Console.Read();
