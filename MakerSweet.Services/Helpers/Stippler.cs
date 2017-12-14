@@ -21,11 +21,12 @@ namespace MakerSweet.Services.Helpers
     {
         private const string _NOOVERLAP = "-n";
         private string svgName;
+        private string filepath = "C:\\Users\\8460p\\Desktop\\CNC\\Stipplers\\voronoi-20120413\\voronoi\\";
 
         public string GetConsoleCommand(PngFile pngFile, SvgFile svgFile, int stipples, double sizingFactor)
         {
             svgName = $"S{stipples}Z{sizingFactor}{_NOOVERLAP}{svgFile.FullFileName}";
-            return $"voronoi -s {stipples} -z {sizingFactor} {_NOOVERLAP} {pngFile.FullFileName} {svgName}";
+            return $"{filepath}{pngFile.FullFileName} {svgName}";
         }
     }
 }

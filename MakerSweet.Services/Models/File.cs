@@ -8,7 +8,7 @@ namespace MakerSweet.Services
         public File(string name)
         {
             DateCreated = DateTime.Now;
-            FileName = $"{name}_{DateCreated.Date.ToShortDateString()}";
+            FileName = name;
             FileExtension = ".txt";
             FullFileName = FileName + FileExtension;
         }

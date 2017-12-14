@@ -3,6 +3,9 @@ using MakerSweet.Services.Models;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using MakerSweet.Services.Helpers;
+using System.Diagnostics;
+using static System.Net.Mime.MediaTypeNames;
+using System.IO;
 
 namespace MakerSweet.ConsoleApp
 {
@@ -13,18 +16,22 @@ namespace MakerSweet.ConsoleApp
             // create service collection
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
-
+            var filename = "ColorTattooPNGFile";
             // create service provider
             var serviceProvider = serviceCollection.BuildServiceProvider();
-            var file = new File("f");
-            var svg = new SvgFile("s");
-            var tsp = new TspFile("t");
-            var gcode = new GcodeFile("g");
-            var footer = gcode.FileFooter;
-            var png = new PngFile("p");
+            var svg = new SvgFile(filename);
+
+            var png = new PngFile(filename);
 
             var fileServices = serviceProvider.GetRequiredService<IStippler>();
-            var command = fileServices.GetConsoleCommand(png,svg,1,2);
+            var command = fileServices.GetConsoleCommand(png,svg,10,0.6);
+            var currentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
+            string[] fileArray = Directory.GetFiles(currentDirectory);
+            ProcessStartInfo startInfo = new ProcessStartInfo($"{currentDirectory}voronoi.exe", command);
+            Console.WriteLine(startInfo);
+            Process p = Process.Start(startInfo);
+            p.WaitForExit();
+            Console.Read();
         }
 
         private static void ConfigureServices(IServiceCollection serviceCollection)
