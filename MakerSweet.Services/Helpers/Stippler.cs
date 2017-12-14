@@ -25,8 +25,8 @@ namespace MakerSweet.Services.Helpers
 
         public string GetConsoleCommand(PngFile pngFile, SvgFile svgFile, int stipples, double sizingFactor)
         {
-            svgName = $"S{stipples}Z{sizingFactor}{_NOOVERLAP}{svgFile.FullFileName}";
-            return $"{filepath}{pngFile.FullFileName} {svgName}";
+            svgName = $"S{stipples}Z{sizingFactor}NoOverlap{svgFile.FullFileName}";
+            return $"{filepath}{pngFile.FullFileName} {filepath}{svgName}";
         }
     }
 }
