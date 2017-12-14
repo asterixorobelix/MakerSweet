@@ -20,10 +20,12 @@ namespace MakerSweet.Services.Helpers
     public class Stippler:IStippler
     {
         private const string _NOOVERLAP = "-n";
+        private string svgName;
 
         public string GetConsoleCommand(PngFile pngFile, SvgFile svgFile, int stipples, double sizingFactor)
         {
-            return $"voronoi -s {stipples} -z {sizingFactor} {_NOOVERLAP} {pngFile.FullFileName} {svgFile.FullFileName}";
+            svgName = $"S{stipples}Z{sizingFactor}{_NOOVERLAP}{svgFile.FullFileName}";
+            return $"voronoi -s {stipples} -z {sizingFactor} {_NOOVERLAP} {pngFile.FullFileName} {svgName}";
         }
     }
 }
