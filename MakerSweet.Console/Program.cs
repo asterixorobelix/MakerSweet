@@ -30,16 +30,14 @@ namespace MakerSweet.ConsoleApp
             var svg = new SvgFile(filename);            
 
             var fileServices = serviceProvider.GetRequiredService<IStippler>();
-            var command = fileServices.GetConsoleCommand(png,svg,1000,0.7);
+            Console.WriteLine(fileServices.CallStippler(png,svg,1000,0.8));
 
             //string[] voronoifiles = Directory.GetFiles("..\\Voronoi");
             //foreach (var file in voronoifiles)
             //{
             //    Console.WriteLine(file);
             //}
-            ProcessStartInfo startInfo = new ProcessStartInfo("..\\Voronoi\\voronoi.exe", command);
-            Process p = Process.Start(startInfo);
-            p.WaitForExit();
+
             Console.Read();
         }
 

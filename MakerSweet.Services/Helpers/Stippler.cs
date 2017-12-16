@@ -1,5 +1,6 @@
 ﻿using MakerSweet.Services.Models;
 using System;
+using System.Diagnostics;
 
 /*
 http://www.saliences.com/projects/npr/stippling/index.html
@@ -24,10 +25,19 @@ namespace MakerSweet.Services.Helpers
         private string svgName;
         private readonly string filepath = Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH;
 
-        public string GetConsoleCommand(PngFile pngFile, SvgFile svgFile, int stipples, double sizingFactor)
+        private string GetConsoleCommand(string pngFileName, string svgFileName, int stipples, double sizingFactor)
         {
-            svgName = $"S{stipples}Z{Convert.ToString(sizingFactor).Replace(".","point")}NoOverlap{svgFile.FullFileName}";
-            return $"-s {stipples} -z {sizingFactor} {_NOOVERLAP} {filepath}{pngFile.FullFileName} {filepath}{svgName}";
+            svgName = $"S{stipples}Z{Convert.ToString(sizingFactor).Replace(".","point")}NoOverlap{svgFileName}";
+            return $"-s {stipples} -z {sizingFactor} {_NOOVERLAP} {filepath}{pngFileName} {filepath}{svgName}";
+        }
+
+        public string CallStippler(PngFile pngFile, SvgFile svgFile, int stipples, double sizingFactor)
+        {
+            var command = GetConsoleCommand(pngFile.FullFileName, svgFile.FullFileName, stipples, sizingFactor);
+            var startInfo = new ProcessStartInfo(Constants.VORONOI_RELATIVE_PATH, command);
+            var p = Process.Start(startInfo);
+            p.WaitForExit();
+            return Constants.SUCCESS;
         }
     }
 }
