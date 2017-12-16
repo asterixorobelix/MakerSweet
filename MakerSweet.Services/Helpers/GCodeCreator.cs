@@ -19,7 +19,8 @@ namespace MakerSweet.Services.Helpers
                         while (tspReader.ReadLine() != null)
                         {
                             int res;
-                            if(int.TryParse(tspReader.ReadLine().Substring(0,1),out res)){
+                            if(int.TryParse(tspReader.ReadLine().Substring(0,1),out res))
+                            {
 
                             }
                         }

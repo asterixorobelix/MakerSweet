@@ -105,7 +105,7 @@ namespace MakerSweet.Services.Helpers
             }
             catch (Exception e)
             {
-                Console.WriteLine($"The file {svgFile.FullFileName} could not be opened");
+                Console.WriteLine($"The file {filepath}{svgFile.FullFileName} could not be opened");
                 Console.Write(e.Message);
                 return 0;
             }
