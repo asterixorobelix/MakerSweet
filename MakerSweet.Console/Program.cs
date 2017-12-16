@@ -31,10 +31,10 @@ namespace MakerSweet.ConsoleApp
             var tsp = new TspFile(filename);
 
             //var stipplerServices = serviceProvider.GetRequiredService<IStippler>();
-            //Console.WriteLine(stipplerServices.CallStippler(png,svg,1000,0.8));
+            //Console.WriteLine(stipplerServices.CallStippler(png, 1000, 0.8));
 
             var tspServices = serviceProvider.GetRequiredService<ITspCreator>();
-            Console.WriteLine(tspServices.ConvertCircleSVGtoTSP(svg, tsp));
+            Console.WriteLine(tspServices.ConvertCircleSVGtoTSP(svg));
 
             //string[] voronoifiles = Directory.GetFiles("..\\Voronoi");
             //foreach (var file in voronoifiles)

@@ -30,8 +30,9 @@ namespace MakerSweet.Services.Helpers
             return $"-s {stipples} -z {sizingFactor} {_NOOVERLAP} {filepath}{pngFileName} {filepath}{svgName}";
         }
 
-        public string CallStippler(PngFile pngFile, SvgFile svgFile, int stipples, double sizingFactor)
+        public string CallStippler(PngFile pngFile, int stipples, double sizingFactor)
         {
+            var svgFile = new SvgFile(pngFile.FileName);
             var command = GetConsoleCommand(pngFile.FullFileName, svgFile.FullFileName, stipples, sizingFactor);
             var startInfo = new ProcessStartInfo(Constants.VORONOI_RELATIVE_PATH, command);
             var p = Process.Start(startInfo);

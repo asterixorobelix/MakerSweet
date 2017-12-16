@@ -11,9 +11,12 @@ namespace MakerSweet.Services.Helpers
         private const string R = "r";
         private readonly string filepath = Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH;
 
-        public string ConvertCircleSVGtoTSP(SvgFile svgFile, TspFile tspFile)
+        public string ConvertCircleSVGtoTSP(SvgFile svgFile)
         {
-            tspFile.Dimension = GetSvgFileCircleLineCount(svgFile);//TSP file must contain information regarding how many circles that there are in the svgfile
+            var tspFile = new TspFile(svgFile.FileName)
+            {
+                Dimension = GetSvgFileCircleLineCount(svgFile)//TSP file must contain information regarding how many circles that there are in the svgfile
+            };
 
             int XwordStart, XwordEnd, YwordStart, YwordEnd;
 
@@ -58,7 +61,7 @@ namespace MakerSweet.Services.Helpers
 
                             }
                             tspWriter.WriteLine(tspFile.EndofFile);
-                            Console.WriteLine($"The TSP Problem file {tspFile.FullFileName} has been created");
+                            Console.WriteLine($"The TSP Problem file {filepath}{tspFile.FullFileName} has been created");
                             return Constants.SUCCESS;
                         }
 
@@ -68,14 +71,14 @@ namespace MakerSweet.Services.Helpers
                 {
 
                     // Let the user know what went wrong.
-                    Console.WriteLine("The file could not be read:");
+                    Console.WriteLine($"The file {filepath}{svgFile.FullFileName} could not be read");
                     Console.WriteLine(e.Message);
                     return Constants.FAILURE;
                 }
             }
             else
             {
-                Console.WriteLine($"The file {svgFile.FullFileName} does not have a dimension value");
+                Console.WriteLine($"The file {filepath}{svgFile.FullFileName} does not have a dimension value");
                 return Constants.FAILURE;
             }
         }
