@@ -22,12 +22,11 @@ namespace MakerSweet.Services.Helpers
     public class Stippler:IStippler
     {
         private const string _NOOVERLAP = "-n";
-        private string svgName;
         private readonly string filepath = Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH;
 
         private string GetConsoleCommand(string pngFileName, string svgFileName, int stipples, double sizingFactor)
         {
-            svgName = $"S{stipples}Z{Convert.ToString(sizingFactor).Replace(".","point")}NoOverlap{svgFileName}";
+            var svgName = $"S{stipples}Z{Convert.ToString(sizingFactor).Replace(".","point")}NoOverlap{svgFileName}";
             return $"-s {stipples} -z {sizingFactor} {_NOOVERLAP} {filepath}{pngFileName} {filepath}{svgName}";
         }
 
