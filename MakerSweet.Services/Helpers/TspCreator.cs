@@ -21,6 +21,7 @@ namespace MakerSweet.Services.Helpers
             {
                 try
                 {
+                    tspFile.SvgFileName = svgFile.FullFileName;
                     // Create an instance of StreamReader to read from a file.
                     // The using statement also closes the StreamReader.
                     using (StreamReader svgReader = new StreamReader($"{filepath}{svgFile.FullFileName}"))
@@ -82,8 +83,6 @@ namespace MakerSweet.Services.Helpers
         //returns the number of lines in the svgFile which contains the word circle
         private int GetSvgFileCircleLineCount(SvgFile svgFile)
         {
-            var lineCount = 1;
-
             try
             {
                 // Create an instance of StreamReader to read from a file.
@@ -91,6 +90,7 @@ namespace MakerSweet.Services.Helpers
                 using (StreamReader svgReader = new StreamReader($"{filepath}{svgFile.FullFileName}"))
                 {
                     string line;
+                    var lineCount = 0;
                     // Read and display lines from the file until the end of 
                     // the file is reached.
                     while ((line =svgReader.ReadLine()) != null)

@@ -34,7 +34,7 @@ namespace MakerSweet.ConsoleApp
             //Console.WriteLine(stipplerServices.CallStippler(png,svg,1000,0.8));
 
             var tspServices = serviceProvider.GetRequiredService<ITspCreator>();
-            tspServices.ConvertCircleSVGtoTSP(svg, tsp);
+            Console.WriteLine(tspServices.ConvertCircleSVGtoTSP(svg, tsp));
 
             //string[] voronoifiles = Directory.GetFiles("..\\Voronoi");
             //foreach (var file in voronoifiles)

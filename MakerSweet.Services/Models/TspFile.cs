@@ -31,12 +31,12 @@ namespace MakerSweet.Services.Models
         public readonly string EndofFile = "EOF";
 
         public string FileHeader { get; private set; }
-        public string SvgFileName { get; private set; }
+        public string SvgFileName { get; set; }
         public int Dimension { get; set; }
 
         public static string GetFileHeader(TspFile tspFile)
         {
-            return $"NAME: {tspFile.FullFileName} {Environment.NewLine}COMMENT: {tspFile.DateCreated} {tspFile.SvgFileName} {Environment.NewLine}TYPE: TSP {Environment.NewLine}DIMENSION: {tspFile.Dimension} {Environment.NewLine}EDGE_WEIGHT_TYPE : EUC_2D {Environment.NewLine}NODE_COORD_SECTION";
+            return $"NAME: {tspFile.FullFileName} {Environment.NewLine}COMMENT: {tspFile.DateCreated} created from:{tspFile.SvgFileName} {Environment.NewLine}TYPE: TSP {Environment.NewLine}DIMENSION: {tspFile.Dimension} {Environment.NewLine}EDGE_WEIGHT_TYPE : EUC_2D {Environment.NewLine}NODE_COORD_SECTION";
         }
     }
 }
