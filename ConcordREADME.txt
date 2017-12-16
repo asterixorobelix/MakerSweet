@@ -37,8 +37,9 @@ What was also not mentioned is that the next stage needs to point to the locatio
 computer of the QSOPT code which you downloaded earlier. 
 You do this by: $ ./configure --with-qsopt=DIR where DIR is the full path name (not the relative path name) 
 for a directory containing both qsopt.a and qsopt.h. 
-If you are in windows, you will need to install cygwin (https://cygwin.com/install.html).
+If you are in windows, you will need to install cygwin (https://cygwin.com/install.html). In the cygwin terminal,
 You can then cd /8460p/Desktop
+then ./config.guess
 You then: $ make
 
 You then open the terminal in the concorde/TSP/ folder. Running "./concorde -s 99 -k 100" in the terminal 
