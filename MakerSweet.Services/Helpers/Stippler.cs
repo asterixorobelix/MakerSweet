@@ -22,7 +22,7 @@ namespace MakerSweet.Services.Helpers
     {
         private const string _NOOVERLAP = "-n";
         private string svgName;
-        private readonly string filepath = "..\\InputOutputFiles\\";//relative path
+        private readonly string filepath = Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH;
 
         public string GetConsoleCommand(PngFile pngFile, SvgFile svgFile, int stipples, double sizingFactor)
         {

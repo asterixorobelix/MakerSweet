@@ -32,11 +32,11 @@ namespace MakerSweet.ConsoleApp
             var fileServices = serviceProvider.GetRequiredService<IStippler>();
             var command = fileServices.GetConsoleCommand(png,svg,1000,0.7);
 
-            string[] voronoifiles = Directory.GetFiles("..\\Voronoi");
-            foreach (var file in voronoifiles)
-            {
-                Console.WriteLine(file);
-            }
+            //string[] voronoifiles = Directory.GetFiles("..\\Voronoi");
+            //foreach (var file in voronoifiles)
+            //{
+            //    Console.WriteLine(file);
+            //}
             ProcessStartInfo startInfo = new ProcessStartInfo("..\\Voronoi\\voronoi.exe", command);
             Process p = Process.Start(startInfo);
             p.WaitForExit();

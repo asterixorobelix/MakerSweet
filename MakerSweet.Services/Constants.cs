@@ -8,5 +8,6 @@ namespace MakerSweet.Services
     {
         public const string SUCCESS = "Success";
         public const string FAILURE = "Failure";
+        public const string INPUTOUTPUT_FOLDER_RELATIVE_PATH = "..\\InputOutputFiles\\";//relative path
     }
 }
