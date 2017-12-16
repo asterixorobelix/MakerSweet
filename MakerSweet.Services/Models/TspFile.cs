@@ -16,6 +16,8 @@
       EOF
   */
 
+using System;
+
 namespace MakerSweet.Services.Models
 {
     public class TspFile:File
@@ -34,7 +36,7 @@ namespace MakerSweet.Services.Models
 
         public static string GetFileHeader(TspFile tspFile)
         {
-            return $"NAME: {tspFile.FullFileName} \nCOMMENT: {tspFile.DateCreated} {tspFile.SvgFileName} \nTYPE: TSP\nDIMENSION: {tspFile.Dimension} \nEDGE_WEIGHT_TYPE : EUC_2D \nNODE_COORD_SECTION";
+            return $"NAME: {tspFile.FullFileName} {Environment.NewLine}COMMENT: {tspFile.DateCreated} {tspFile.SvgFileName} {Environment.NewLine}TYPE: TSP {Environment.NewLine}DIMENSION: {tspFile.Dimension} {Environment.NewLine}EDGE_WEIGHT_TYPE : EUC_2D {Environment.NewLine}NODE_COORD_SECTION";
         }
     }
 }

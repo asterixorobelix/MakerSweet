@@ -27,10 +27,14 @@ namespace MakerSweet.ConsoleApp
 
             var filename = "ColorTattooPNGFile";
             var png = new PngFile(filename);
-            var svg = new SvgFile(filename);            
+            var svg = new SvgFile("S1000Z0point8NoOverlapColorTattooPNGFile");
+            var tsp = new TspFile(filename);
 
-            var fileServices = serviceProvider.GetRequiredService<IStippler>();
-            Console.WriteLine(fileServices.CallStippler(png,svg,1000,0.8));
+            //var stipplerServices = serviceProvider.GetRequiredService<IStippler>();
+            //Console.WriteLine(stipplerServices.CallStippler(png,svg,1000,0.8));
+
+            var tspServices = serviceProvider.GetRequiredService<ITspCreator>();
+            tspServices.ConvertCircleSVGtoTSP(svg, tsp);
 
             //string[] voronoifiles = Directory.GetFiles("..\\Voronoi");
             //foreach (var file in voronoifiles)

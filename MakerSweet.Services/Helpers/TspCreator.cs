@@ -9,6 +9,7 @@ namespace MakerSweet.Services.Helpers
         private const string CX = "cx";
         private const string CY = "cy";
         private const string R = "r";
+        private readonly string filepath = Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH;
 
         public string ConvertCircleSVGtoTSP(SvgFile svgFile, TspFile tspFile)
         {
@@ -16,21 +17,21 @@ namespace MakerSweet.Services.Helpers
 
             int XwordStart, XwordEnd, YwordStart, YwordEnd;
 
-            if (svgFile.Dimension != 0)
+            if (tspFile.Dimension != 0)
             {
                 try
                 {
                     // Create an instance of StreamReader to read from a file.
                     // The using statement also closes the StreamReader.
-                    using (StreamReader svgReader = new StreamReader(svgFile.FullFileName))
+                    using (StreamReader svgReader = new StreamReader($"{filepath}{svgFile.FullFileName}"))
                     {
 
-                        using (StreamWriter tspWriter = new StreamWriter(tspFile.FullFileName))
+                        using (StreamWriter tspWriter = new StreamWriter($"{filepath}{tspFile.FullFileName}"))
                         {
                             //populate tspfile header
                             tspWriter.WriteLine(TspFile.GetFileHeader(tspFile));
 
-                            int count = 1;
+                            var count = 1;
 
                             string line;
                             // Read and display lines from the file until the end of 
@@ -79,15 +80,15 @@ namespace MakerSweet.Services.Helpers
         }
 
         //returns the number of lines in the svgFile which contains the word circle
-        private static int GetSvgFileCircleLineCount(SvgFile svgFile)
+        private int GetSvgFileCircleLineCount(SvgFile svgFile)
         {
-            int lineCount = 1;
+            var lineCount = 1;
 
             try
             {
                 // Create an instance of StreamReader to read from a file.
                 // The using statement also closes the StreamReader.
-                using (StreamReader svgReader = new StreamReader(svgFile.FullFileName))
+                using (StreamReader svgReader = new StreamReader($"{filepath}{svgFile.FullFileName}"))
                 {
                     string line;
                     // Read and display lines from the file until the end of 
