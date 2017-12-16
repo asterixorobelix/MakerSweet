@@ -17,23 +17,35 @@ namespace MakerSweet.ConsoleApp
     {
         static void Main(string[] args)
         {
+            //Dependency injection setup beigns
             // create service collection
             var serviceCollection = new ServiceCollection();
             ConfigureServices(serviceCollection);
-            var filename = "ColorTattooPNGFile";
             // create service provider
             var serviceProvider = serviceCollection.BuildServiceProvider();
-            var svg = new SvgFile(filename);
+            //Dependency injection setup ends
 
+            var filename = "ColorTattooPNGFile";
             var png = new PngFile(filename);
+            var svg = new SvgFile(filename);            
 
             var fileServices = serviceProvider.GetRequiredService<IStippler>();
             var command = fileServices.GetConsoleCommand(png,svg,1000,0.7);
-            var currentDirectory = System.AppDomain.CurrentDomain.BaseDirectory;
-            string[] fileArray = Directory.GetFiles(currentDirectory);
-            ProcessStartInfo startInfo = new ProcessStartInfo($"{currentDirectory}voronoi.exe", command);
-            Process p = Process.Start(startInfo);
-            p.WaitForExit();
+            Console.WriteLine(System.AppDomain.CurrentDomain.BaseDirectory);
+            string[] fileArray = Directory.GetFiles("..\\InputOutputFiles");
+            foreach(var file in fileArray)
+            {
+                Console.WriteLine(file);
+            }
+
+            string[] voronoifiles = Directory.GetFiles("..\\Voronoi");
+            foreach (var file in voronoifiles)
+            {
+                Console.WriteLine(file);
+            }
+            //ProcessStartInfo startInfo = new ProcessStartInfo($"{currentDirectory}voronoi.exe", command);
+            //Process p = Process.Start(startInfo);
+            //p.WaitForExit();
             Console.Read();
         }
 
