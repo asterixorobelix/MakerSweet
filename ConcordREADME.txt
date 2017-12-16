@@ -36,7 +36,9 @@ What was also not mentioned is that the next stage needs to point to the locatio
 You do this by: $ ./configure --with-qsopt=DIR where DIR is the full path name (not the relative path name) for a directory containing both qsopt.a and qsopt.h. 
 You then: $ make
 
-You then open the terminal in the concorde/TSP/ folder. Running "./concorde -s 99 -k 100" in the terminal will generate and solve a random geometric TSP on 100 points. A typical way to run the concorde solver is to type into the terminal : "./concorde myprob.tsp", where myprob.tsp is a TSP instance in TSPLIB format. The output file is an ordered list of the most efficient route through the line numbers of the .tsp input file
+You then open the terminal in the concorde/TSP/ folder. Running "./concorde -s 99 -k 100" in the terminal will generate and solve a random geometric TSP on 100 points. 
+A typical way to run the concorde solver is to type into the terminal : "./concorde myprob.tsp", where myprob.tsp is a TSP instance in TSPLIB format. 
+The output file is an ordered list of the most efficient route through the line numbers of the .tsp input file
 
 Unpacking the distribution create a directory, "concorde", and several
 subdirectories.  To configure, cd into the concorde directory, and run
