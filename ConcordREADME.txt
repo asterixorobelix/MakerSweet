@@ -28,9 +28,13 @@ gunzip the downloaded file, then use tar to unpack the archive:
     $ gunzip co031219.tgz
     $ tar xvf co031219.tar
     
-Documentation for setting up the tsp solver is rather minimal and it was a struggle to get it up and running. What is not explicitly mentioned is that you need to also download some additional code, available at (https://www.math.uwaterloo.ca/~bico//qsopt/downloads/downloads.htm). You then need to: $ gunzip co031219.tgz $ tar xvf co031219.tar $ cd concorde
+Documentation for setting up the tsp solver is rather minimal and it was a struggle to get it up and running. 
+What is not explicitly mentioned is that you need to also download some additional code, available at (https://www.math.uwaterloo.ca/~bico//qsopt/downloads/downloads.htm). 
+You then need to: $ gunzip co031219.tgz $ tar xvf co031219.tar $ cd concorde
 
-What was also not mentioned is that the next stage needs to point to the location on your computer of the QSOPT code which you downloaded earlier. You do this by: $ ./configure --with-qsopt=DIR where DIR is the full path name (not the relative path name) for a directory containing both qsopt.a and qsopt.h. You then: $ make
+What was also not mentioned is that the next stage needs to point to the location on your computer of the QSOPT code which you downloaded earlier. 
+You do this by: $ ./configure --with-qsopt=DIR where DIR is the full path name (not the relative path name) for a directory containing both qsopt.a and qsopt.h. 
+You then: $ make
 
 You then open the terminal in the concorde/TSP/ folder. Running "./concorde -s 99 -k 100" in the terminal will generate and solve a random geometric TSP on 100 points. A typical way to run the concorde solver is to type into the terminal : "./concorde myprob.tsp", where myprob.tsp is a TSP instance in TSPLIB format. The output file is an ordered list of the most efficient route through the line numbers of the .tsp input file
 
