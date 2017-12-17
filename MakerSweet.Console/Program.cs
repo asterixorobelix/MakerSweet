@@ -29,18 +29,16 @@ namespace MakerSweet.ConsoleApp
             var png = new PngFile(filename);
             var svg = new SvgFile("S1000Z0point8NoOverlapColorTattooPNGFile");
             var tsp = new TspFile(filename);
+            var tspSol = new TspSolFile("S1000Z0point8NoOverlapColorTattooPNGFile");
+            tsp.Dimension = 1000;
 
             //var stipplerServices = serviceProvider.GetRequiredService<IStippler>();
             //Console.WriteLine(stipplerServices.CallStippler(png, 1000, 0.8));
 
-            var tspServices = serviceProvider.GetRequiredService<ITspCreator>();
-            Console.WriteLine(tspServices.ConvertCircleSVGtoTSP(svg));
+            var tspServices = serviceProvider.GetRequiredService<ITspConverter>();
+            //Console.WriteLine(tspServices.ConvertCircleSVGtoTSP(svg));
 
-            //string[] voronoifiles = Directory.GetFiles("..\\Voronoi");
-            //foreach (var file in voronoifiles)
-            //{
-            //    Console.WriteLine(file);
-            //}
+            Console.WriteLine(tspServices.ReorderSVGAccordingtoTSPsol(svg, tspSol, tsp));
 
             Console.Read();
         }
@@ -49,7 +47,7 @@ namespace MakerSweet.ConsoleApp
         {
             // add services
             serviceCollection.AddTransient<IStippler, Stippler>();
-            serviceCollection.AddTransient<ITspCreator, TspCreator>();
+            serviceCollection.AddTransient<ITspConverter, TspConverter>();
         }
     }
 }

@@ -1,10 +1,11 @@
 ﻿using MakerSweet.Services.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace MakerSweet.Services.Helpers
 {
-    public class TspCreator:ITspCreator
+    public class TspConverter:ITspConverter
     {
         private const string CX = "cx";
         private const string CY = "cy";
@@ -83,6 +84,37 @@ namespace MakerSweet.Services.Helpers
             }
         }
 
+        public string ReorderSVGAccordingtoTSPsol(SvgFile oldSvgFile, TspSolFile tspSolFile, TspFile tspFile)
+        {
+            try
+            {
+                using(StreamReader oldSvgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{oldSvgFile.FullFileName}"))
+                {
+                    var reorderedSvgFile = new SvgFile($"Reordered{oldSvgFile.FullFileName}");
+                    
+                    using(StreamWriter reorderedSvgWriter = new StreamWriter($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{reorderedSvgFile.FullFileName}"))
+                    {
+                        List<int> tspSolOrder = GetTspSolLineOrder(tspSolFile, tspFile);
+                        string line;
+                        while ((line=oldSvgReader.ReadLine()) != null)
+                        {
+                            if (!line.Contains("circle"))
+                            {
+                                reorderedSvgWriter.WriteLine(line);
+                            }
+                                                       
+                        }
+                        return Constants.SUCCESS;
+                    }                    
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return Constants.FAILURE;
+            }
+        }
+
         //returns the number of lines in the svgFile which contains the word circle
         private int GetSvgFileCircleLineCount(SvgFile svgFile)
         {
@@ -111,6 +143,51 @@ namespace MakerSweet.Services.Helpers
                 Console.WriteLine($"The file {filepath}{svgFile.FullFileName} could not be opened");
                 Console.Write(e.Message);
                 return 0;
+            }
+        }
+
+        /*Example beginning of a tspSolFile
+         * ***  ***
+         
+         
+         
+         *** You chose the Concorde(CPLEX) solver ***
+         
+         
+         
+         *** Cities are numbered 0..n-1 and each line shows a leg from one city to the next 
+          followed by the distance rounded to integers***
+         
+         1000 1000
+         0 586 22  //Begins with city 0, travel to city 586, which is a distance of 22 units
+         586 15 18
+         15 477 22
+         */
+        private static List<int> GetTspSolLineOrder(TspSolFile tspSolFile, TspFile tspFile)
+        {
+            var tspSolOrder = new List<int>();
+            string line;
+            int firstSvgLineNumber;
+
+            try
+            {
+                using(StreamReader tspSolReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{tspSolFile.FullFileName}"))
+                {
+                    while ((line = tspSolReader.ReadLine()) != null)
+                    {
+                        int.TryParse((line.Split(null))[0],out firstSvgLineNumber);//split at whitespace, take first part and attempt to parse to int
+                        if (firstSvgLineNumber != tspFile.Dimension)
+                        {
+                            tspSolOrder.Add(firstSvgLineNumber);
+                        }
+                    }
+                    return tspSolOrder;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+                return tspSolOrder;
             }
         }
     }

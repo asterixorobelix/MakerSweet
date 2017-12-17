@@ -2,9 +2,10 @@
 
 namespace MakerSweet.Services.Helpers
 {
-    public interface ITspCreator
+    public interface ITspConverter
     {
         //returns Constants.SUCCESS or Constants.FAILURE if tspFile was successfully created or not
         string ConvertCircleSVGtoTSP(SvgFile svgFile);
+        string ReorderSVGAccordingtoTSPsol(SvgFile oldSvgFile,TspSolFile tspSolFile, TspFile tspFile);
     }
 }

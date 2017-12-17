@@ -1,5 +1,5 @@
 NAME: S1000Z0point8NoOverlapColorTattooPNGFile.tsp 
-COMMENT: 2017/12/16 09:10:03 PM created from:S1000Z0point8NoOverlapColorTattooPNGFile.svg 
+COMMENT: 2017/12/17 08:48:04 PM created from:S1000Z0point8NoOverlapColorTattooPNGFile.svg 
 TYPE: TSP 
 DIMENSION: 1000 
 EDGE_WEIGHT_TYPE : EUC_2D 
