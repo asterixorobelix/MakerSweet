@@ -6,20 +6,21 @@ namespace MakerSweet.Services.Helpers
 {
     public class GCodeCreator:IGcodeCreator
     {
-        public string CreateCircularGCodeFile(GcodeFile gcodeFile, TspFile tspFile)
+        public string CreateCircularGCodeFile(SvgFile svgFile)
         {
             try
             {
-                using(StreamReader tspReader = new StreamReader(tspFile.FullFileName))
+                var gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}");
+                using(StreamReader svgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FullFileName}"))
                 {
-                    using(StreamWriter gcodeWriter = new StreamWriter(gcodeFile.FullFileName))
+                    using(StreamWriter gcodeWriter = new StreamWriter($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{gcodeFile.FullFileName}"))
                     {
                         gcodeWriter.WriteLine(gcodeFile.FileHeader);
 
-                        while (tspReader.ReadLine() != null)
+                        while (svgReader.ReadLine() != null)
                         {
-                            int res;
-                            if(int.TryParse(tspReader.ReadLine().Substring(0,1),out res))
+                            string line = svgReader.ReadLine();
+                            if(!line.Contains("circle"))
                             {
 
                             }
@@ -33,7 +34,7 @@ namespace MakerSweet.Services.Helpers
             }
             catch (Exception e)
             {
-                Console.WriteLine($"couldn't open file {tspFile.FullFileName}");
+                Console.WriteLine($"couldn't open file {svgFile.FullFileName}");
                 Console.WriteLine(e.Message);
                 return Constants.FAILURE;
             }
