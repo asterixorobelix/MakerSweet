@@ -41,28 +41,28 @@ namespace MakerSweet.Services.Helpers
         }
         private string FeedRate(double feed)
         {
-            return $"F{feed}";
+            return $"F{feed}{Environment.NewLine}";
         }
         private string RapidMove(double z)
         {
             //G00 = Rapid positioning
-            return $"G0 Z{z}";
+            return $"G0 Z{z}{Environment.NewLine}";
         }
         private string RapidMove(double x, double y)
         {
             //G00 = Rapid positioning
-            return $"G0 X{x} Y{y}";
+            return $"G0 X{x} Y{y}{Environment.NewLine}";
         }
 
         private string RapidMove(double x, double y, double z)
         {
             //G00 = Rapid positioning
-            return $"G0 X{x} Y{y} Z{z}";
+            return $"G0 X{x} Y{y} Z{z}{Environment.NewLine}";
         }
 
         private string ClockWiseArc(double i)
         {
-            return $"G2 I{i}";
+            return $"G2 I{i}{Environment.NewLine}";
         }
     }
 }

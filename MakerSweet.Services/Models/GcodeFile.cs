@@ -15,7 +15,7 @@ namespace MakerSweet.Services.Models
             FullFileName = FileName + FileExtension;
             FileFooter = GetFileFooter();
             FileHeader = GetFileHeader(this.DateCreated);
-        }
+        }        
 
         private static string GetFileFooter()
         {
@@ -29,7 +29,7 @@ namespace MakerSweet.Services.Models
                M30
                End of program, with return to program top
             */
-            return "G00\nZ5.5\nM05\nM30";
+            return $"G00{Environment.NewLine}{Constants.SAFETY_HEIGHT}{Environment.NewLine}M05{Environment.NewLine}M30";
         }
 
         private static string GetFileHeader(DateTime dateTime)
@@ -47,7 +47,7 @@ namespace MakerSweet.Services.Models
             Z5.5 : Move up 5.5 units from zero
             M03 : Spindle on, clockwise rotation
             */
-            return $"(This file was created on {dateTime})\nG17\nG21\nG90\nG80\nG64\nG00\nZ5.5\nM03";
+            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}{Constants.SAFETY_HEIGHT}{Environment.NewLine}M03";
         }
 
         public string FileFooter { get; private set; }

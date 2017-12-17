@@ -10,5 +10,6 @@ namespace MakerSweet.Services
         public const string FAILURE = "Failure";
         public const string INPUTOUTPUT_FOLDER_RELATIVE_PATH = "..\\InputOutputFiles\\";//relative path
         public const string VORONOI_RELATIVE_PATH = "..\\Voronoi\\voronoi.exe";
+        public const string SAFETY_HEIGHT = "Z5.5";
     }
 }
