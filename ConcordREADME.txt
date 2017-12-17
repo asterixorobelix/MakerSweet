@@ -37,6 +37,12 @@ What was also not mentioned is that the next stage needs to point to the locatio
 computer of the QSOPT code which you downloaded earlier. 
 You do this by: $ ./configure --with-qsopt=DIR where DIR is the full path name (not the relative path name) 
 for a directory containing both qsopt.a and qsopt.h. 
+If you are in windows, you will need to install cygwin (https://cygwin.com/install.html). In the cygwin terminal,
+You can then cd /8460p/Desktop
+then ./config.guess
+This didnt seem to do anything, but after reading here:
+https://sourceforge.net/p/mingw-w64/wiki2/TypeTriplets/
+I typed: ./configure i686-pc-mingw32 --with-qsopt=c/Users/Desktop/GithubFile/MakerSweet/qsopt
 You then: $ make
 
 You then open the terminal in the concorde/TSP/ folder. Running "./concorde -s 99 -k 100" in the terminal 
