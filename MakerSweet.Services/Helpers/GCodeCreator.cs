@@ -1,5 +1,6 @@
 ﻿using MakerSweet.Services.Models;
 using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace MakerSweet.Services.Helpers
@@ -22,7 +23,7 @@ namespace MakerSweet.Services.Helpers
                             string line = svgReader.ReadLine();
                             if(!line.Contains("circle"))
                             {
-
+                                ConvertCircleSVGLineToGCode(line);
                             }
                         }
                         gcodeWriter.WriteLine(gcodeFile.FileFooter);
@@ -40,6 +41,24 @@ namespace MakerSweet.Services.Helpers
             }
             
         }
+
+        private List<int> ConvertCircleSVGLineToGCode(string line)
+        {
+            string[] coords = line.Split("=");
+            var CxCyR = new List<int>();
+            if (coords.Length != 0)
+            {
+                int parsedResult;                
+                int.TryParse(coords[0],out parsedResult);
+                CxCyR.Add(parsedResult);
+                int.TryParse(coords[1], out parsedResult);
+                CxCyR.Add(parsedResult);
+                int.TryParse(coords[2], out parsedResult);
+                CxCyR.Add(parsedResult);
+            }
+            return CxCyR;
+        }
+
         private static string FeedRate(double feed)
         {
             return $"F{feed}{Environment.NewLine}";
