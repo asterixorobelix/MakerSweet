@@ -27,7 +27,11 @@ namespace MakerSweet.Web.Pages
         {
             if (ModelState.IsValid)
             {
-                Message =_stippler.CallStippler(FileName, stipples: StippleNumber, sizingFactor: SizingFactor);
+                if (FileName.Contains("."))
+                {
+                    FileName = FileName.Split(".")[0];
+                }
+                Message = _stippler.CallStippler(FileName, stipples: StippleNumber, sizingFactor: SizingFactor);
                 return Page();
             }
             Message = Constants.GENERIC_ERROR_MESSAGE;
@@ -35,14 +39,17 @@ namespace MakerSweet.Web.Pages
         }
         [BindProperty]
         [Required(ErrorMessage =Constants.FILE_NAME_ERROR)]
+        [Display(Name ="File Name")]
         public string FileName { get; set; }
         [BindProperty]
         [Required]
         [Range(100,100000)]
+        [Display(Name ="Number of Stipples")]
         public int StippleNumber { get; set; }
         [BindProperty]
         [Required]
         [Range(0.1,20)]
+        [Display(Name ="Sizing Factor")]
         public double SizingFactor { get; set; }
         public bool NoOverlap { get; set; }
         public string Message { get; set; }

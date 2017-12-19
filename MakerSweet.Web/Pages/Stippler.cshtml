@@ -6,29 +6,42 @@
 }
 
 <h2>Stippler</h2>
-
+<div class="centerText">
+    <small >Choose the settings for the file which you wish to dotify!</small>
+</div>
+<img class=" image img-responsive" src="https://cs.nyu.edu/~ajsecord/npar2002/html/stipples-img42.png"/>
 <div>
     @Model.Message
 </div>
 <form asp-action="Stippler" method="post">
     <div>
-        @Html.LabelFor(x => x.FileName)
-        @Html.TextBoxFor(x => x.FileName, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER })
+        @Html.LabelFor(x => x.FileName) (Currently, only PNG files are supported)
     </div>
-    @Html.ValidationMessageFor(x => x.FileName)
+    <div>
+        @Html.TextBoxFor(x => x.FileName, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER, @class="form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.FileName)
+    </div>
     <div>
         @Html.LabelFor(x => x.StippleNumber)
-        @Html.TextBoxFor(x => x.StippleNumber)
     </div>
-    @Html.ValidationMessageFor(x => x.StippleNumber)
 
     <div>
-        @Html.LabelFor(x => x.SizingFactor)
-        @Html.TextBoxFor(x => x.SizingFactor)
+        @Html.TextBoxFor(x => x.StippleNumber, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.StippleNumber)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.SizingFactor) (A number greater than one increases the size of the dots)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.SizingFactor, new { @class = "form-control" })
     </div>
     @Html.ValidationMessageFor(x => x.SizingFactor)
-    <div>
+    <div class="btnDiv">
         <button class="btn btn-default" type="submit">Submit</button>
-    </div>    
+    </div>
 </form>
 

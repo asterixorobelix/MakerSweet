@@ -33,3 +33,11 @@ body {
         display: none;
     }
 }
+
+.image{
+    max-height:200px;
+}
+
+.btnDiv{
+    padding-top:20px;
+}
