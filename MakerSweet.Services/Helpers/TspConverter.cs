@@ -12,8 +12,12 @@ namespace MakerSweet.Services.Helpers
         private const string R = "r";
         private readonly string filepath = Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH;
 
-        public string ConvertCircleSVGtoTSP(SvgFile svgFile)
+        public string ConvertCircleSVGtoTSP(string svgFileName)
         {
+            var filenameParser = new FileNameParser();
+            svgFileName = filenameParser.RemoveDotFileExtensionInFileName(svgFileName);
+
+            var svgFile = new SvgFile(svgFileName);
             var tspFile = new TspFile(svgFile.FileName)
             {
                 Dimension = GetSvgFileCircleLineCount(svgFile)//TSP file must contain information regarding how many circles that there are in the svgfile
@@ -62,8 +66,7 @@ namespace MakerSweet.Services.Helpers
 
                             }
                             tspWriter.WriteLine(tspFile.EndofFile);
-                            Console.WriteLine($"The TSP Problem file {filepath}{tspFile.FullFileName} has been created");
-                            return Constants.SUCCESS;
+                            return $"The TSP Problem file {filepath}{tspFile.FullFileName} has been created";
                         }
 
                     }
@@ -72,15 +75,12 @@ namespace MakerSweet.Services.Helpers
                 {
 
                     // Let the user know what went wrong.
-                    Console.WriteLine($"The file {filepath}{svgFile.FullFileName} could not be read");
-                    Console.WriteLine(e.Message);
-                    return Constants.FAILURE;
+                    return $"The file {filepath}{svgFile.FullFileName} could not be read. {e.Message}";
                 }
             }
             else
             {
-                Console.WriteLine($"The file {filepath}{svgFile.FullFileName} does not have a dimension value");
-                return Constants.FAILURE;
+                return $"The file {filepath}{svgFile.FullFileName} does not have a dimension value";
             }
         }
 

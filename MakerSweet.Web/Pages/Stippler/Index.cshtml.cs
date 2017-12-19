@@ -27,10 +27,6 @@ namespace MakerSweet.Web.Pages
         {
             if (ModelState.IsValid)
             {
-                if (FileName.Contains("."))
-                {
-                    FileName = FileName.Split(".")[0];
-                }
                 Message = _stippler.CallStippler(FileName, stipples: StippleNumber, sizingFactor: SizingFactor);
                 return Page();
             }

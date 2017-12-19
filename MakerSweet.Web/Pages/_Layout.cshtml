@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>@ViewData["Title"] - MakerSweet.Web</title>
+    <title>@ViewData["Title"] - MakerSweet</title>
 
     <environment include="Development">
         <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
@@ -32,6 +32,7 @@
                 <ul class="nav navbar-nav">
                     <li><a asp-page="/Index">Home</a></li>
                     <li><a asp-page="/Stippler/Index">Stippler</a></li>
+                    <li><a asp-page="/TSP/Index">TSP</a></li>
                     <li><a asp-page="/About">About</a></li>
                     <li><a asp-page="/Contact">Contact</a></li>
                 </ul>
@@ -43,7 +44,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p class="centerText">&copy; @DateTime.Now - MakerSweet.Web</p>
+            <p class="centerText">&copy; @DateTime.Now - MakerSweet</p>
         </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.js"></script>

@@ -32,6 +32,8 @@ namespace MakerSweet.Services.Helpers
 
         public string CallStippler(string pngFileName, int stipples, double sizingFactor)
         {
+            var filenameParser = new FileNameParser();
+            pngFileName = filenameParser.RemoveDotFileExtensionInFileName(pngFileName);
             var pngFile = new PngFile(pngFileName);
             var svgFile = new SvgFile(pngFile.FileName);
             try

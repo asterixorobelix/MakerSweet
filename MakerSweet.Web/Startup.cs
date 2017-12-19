@@ -45,6 +45,7 @@ namespace MakerSweet.Web
             // For more information on how to enable account confirmation and password reset please visit https://go.microsoft.com/fwlink/?LinkID=532713
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddScoped<IStippler, Stippler>();
+            services.AddScoped<ITspConverter, TspConverter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
