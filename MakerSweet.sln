@@ -3,14 +3,16 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27130.2003
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakerSweet.Services", "MakerSweet.Services\MakerSweet.Services.csproj", "{5DC47F33-EC5E-4877-8534-A5A52943A057}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakerSweet.Services", "MakerSweet.Services\MakerSweet.Services.csproj", "{5DC47F33-EC5E-4877-8534-A5A52943A057}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakerSweet.ConsoleApp", "MakerSweet.Console\MakerSweet.ConsoleApp.csproj", "{9F1E1ABA-0070-4DB2-ABDC-8AC17A6A7259}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MakerSweet.ConsoleApp", "MakerSweet.Console\MakerSweet.ConsoleApp.csproj", "{9F1E1ABA-0070-4DB2-ABDC-8AC17A6A7259}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{565960CA-95C1-4279-B8E5-2F016CB3B729}"
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.txt = ReadMe.txt
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MakerSweet.Web", "MakerSweet.Web\MakerSweet.Web.csproj", "{1A6F7151-EB6E-4155-AE24-EE762C4B005E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -26,6 +28,10 @@ Global
 		{9F1E1ABA-0070-4DB2-ABDC-8AC17A6A7259}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9F1E1ABA-0070-4DB2-ABDC-8AC17A6A7259}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9F1E1ABA-0070-4DB2-ABDC-8AC17A6A7259}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6F7151-EB6E-4155-AE24-EE762C4B005E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6F7151-EB6E-4155-AE24-EE762C4B005E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6F7151-EB6E-4155-AE24-EE762C4B005E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6F7151-EB6E-4155-AE24-EE762C4B005E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
