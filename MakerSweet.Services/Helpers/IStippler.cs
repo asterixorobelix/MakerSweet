@@ -4,6 +4,6 @@ namespace MakerSweet.Services.Helpers
 {
     public interface IStippler
     {
-        string CallStippler(PngFile pngFile, int stipples, double sizingFactor);
+        string CallStippler(string pngFileName, int stipples, double sizingFactor);
     }
 }
