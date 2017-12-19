@@ -6,4 +6,25 @@
 }
 
 <h2>Stippler</h2>
+<form asp-action="Stippler" method="post">
+    <div>
+        @Html.LabelFor(x => x.FileName)
+        @Html.TextBoxFor(x => x.FileName, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER })
+    </div>
+    @Html.ValidationMessageFor(x => x.FileName)
+    <div>
+        @Html.LabelFor(x => x.StippleNumber)
+        @Html.TextBoxFor(x => x.StippleNumber)
+    </div>
+    @Html.ValidationMessageFor(x => x.StippleNumber)
+
+    <div>
+        @Html.LabelFor(x => x.SizingFactor)
+        @Html.TextBoxFor(x => x.SizingFactor)
+    </div>
+    @Html.ValidationMessageFor(x => x.SizingFactor)
+    <div>
+        <button class="btn btn-default" type="submit">Submit</button>
+    </div>    
+</form>
 
