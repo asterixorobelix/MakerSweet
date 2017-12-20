@@ -8,7 +8,7 @@
 <h2>Create Circular Gcode File</h2>
 
 <div>
-    <small>Choose the file for which you want to create a TSP file!</small>
+    <small>Choose the file and settings from which to make a gcode file!</small>
 </div>
 <img class=" image img-responsive" src="https://c1.staticflickr.com/7/6093/6883462858_4d1a5a8720_b.jpg" />
 <div>
@@ -16,22 +16,67 @@
 </div>
 <form asp-action="CreateCircularGcodeFile" method="post">
     <div>
-        @Html.LabelFor(x => x.FeedRate)
+        @Html.LabelFor(x => x.InputFileName)
     </div>
     <div>
-        @Html.TextBoxFor(x => x.FeedRate, new { @placeholder = Constants.FEED_RATE_PLACEHOLDER, @class = "form-control" })
+        @Html.TextBoxFor(x => x.InputFileName, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER, @class = "form-control" })
     </div>
     <div>
-        @Html.ValidationMessageFor(x => x.FeedRate)
+        @Html.ValidationMessageFor(x => x.InputFileName)
     </div>
     <div>
-        @Html.LabelFor(x => x.SafeZHeight)
+        @Html.LabelFor(x => x.CutFeedRate) (mm/s)
     </div>
     <div>
-        @Html.TextBoxFor(x => x.SafeZHeight, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER, @class = "form-control" })
+        @Html.TextBoxFor(x => x.CutFeedRate, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.CutFeedRate)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.PlungeFeedRate) (mm/s)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.PlungeFeedRate, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.PlungeFeedRate)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.SafeZHeight) (mm)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.SafeZHeight, new { @class = "form-control" })
     </div>
     <div>
         @Html.ValidationMessageFor(x => x.SafeZHeight)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.BitSize) (mm)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.BitSize, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.BitSize)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.FinalDepth) (mm)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.FinalDepth, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.FinalDepth)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.DepthPerPass) (mm)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.DepthPerPass, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.DepthPerPass)
     </div>
     <div class="btnDiv">
         <button class="btn btn-default" type="submit">Submit</button>

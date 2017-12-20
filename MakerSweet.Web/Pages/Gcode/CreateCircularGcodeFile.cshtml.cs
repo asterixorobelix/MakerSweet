@@ -16,6 +16,12 @@ namespace MakerSweet.Web.Pages.Gcode
         public CreateCircularGcodeFileModel(IGcodeCreator gcodeCreator)
         {
             _gcodeCreator = gcodeCreator;
+            SafeZHeight = Constants.SAFETY_HEIGHT_DEFAULT;
+            BitSize = Constants.BIT_SIZE_DEFAULT;
+            DepthPerPass = Constants.DEPTH_PER_PASS_DEFAULT;
+            CutFeedRate = Constants.CUT_FEEDRATE_DEFAULT;
+            FinalDepth = Constants.TARGET_DEPTH_DEFAULT;
+            PlungeFeedRate = Constants.PLUNGE_FEEDRATE_DEFAULT;
         }
 
         public IActionResult OnGet()
@@ -25,14 +31,35 @@ namespace MakerSweet.Web.Pages.Gcode
 
         public IActionResult OnPost()
         {
+            if (ModelState.IsValid)
+            {
+                Message =_gcodeCreator.CreateCircularGCodeFile(svgFileName: InputFileName, safeZHeight: SafeZHeight);
+                return Page();
+            }
+            Message = Constants.GENERIC_ERROR_MESSAGE;
             return Page();
         }
         [Required]
         [BindProperty]
-        public int FeedRate { get; set; }
+        public double CutFeedRate { get; set; }
         [Required]
         [BindProperty]
-        public int SafeZHeight { get; set; }
+        public double PlungeFeedRate { get; set; }
+        [Required]
+        [BindProperty]
+        public double SafeZHeight { get; set; }
+        [Required]
+        [BindProperty]
+        public double DepthPerPass { get; set; }
+        [Required]
+        [BindProperty]
+        public double FinalDepth { get; set; }
+        [Required]
+        [BindProperty]
+        public double BitSize { get; set; }
+        [Required]
+        [BindProperty]
+        public string InputFileName { get; set; }
 
         public string Message { get; set; }
     }

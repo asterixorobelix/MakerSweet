@@ -1,5 +1,6 @@
 ﻿using MakerSweet.Services.Models;
 using System;
+using MakerSweet.Services.Helpers;
 
 namespace MakerSweet.Services
 {
@@ -8,7 +9,7 @@ namespace MakerSweet.Services
         public File(string name)
         {
             DateCreated = DateTime.Now;
-            FileName = name;
+            FileName = FileNameParser.RemoveDotFileExtensionInFileName(name);
             FileExtension = ".txt";
             FullFileName = FileName + FileExtension;
         }

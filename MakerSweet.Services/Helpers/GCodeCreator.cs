@@ -7,11 +7,12 @@ namespace MakerSweet.Services.Helpers
 {
     public class GCodeCreator:IGcodeCreator
     {
-        public string CreateCircularGCodeFile(SvgFile svgFile)
+        public string CreateCircularGCodeFile(string svgFileName, double safeZHeight)
         {
             try
             {
-                var gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}");
+                var svgFile = new SvgFile(svgFileName);
+                var gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}", safeZHeight);
                 using(StreamReader svgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FullFileName}"))
                 {
                     using(StreamWriter gcodeWriter = new StreamWriter($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{gcodeFile.FullFileName}"))
@@ -27,17 +28,14 @@ namespace MakerSweet.Services.Helpers
                             }
                         }
                         gcodeWriter.WriteLine(gcodeFile.FileFooter);
-                        Console.WriteLine($"The file {gcodeFile.FullFileName} has been created successfully");
-                        return Constants.SUCCESS;
+                        return $"The file {gcodeFile.FullFileName} has been created successfully";
                     }
                 }
                 
             }
             catch (Exception e)
             {
-                Console.WriteLine($"couldn't open file {svgFile.FullFileName}");
-                Console.WriteLine(e.Message);
-                return Constants.FAILURE;
+                return $"couldn't open file {svgFileName}. {e.Message}";
             }
             
         }

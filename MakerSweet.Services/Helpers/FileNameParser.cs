@@ -4,9 +4,9 @@ using System.Text;
 
 namespace MakerSweet.Services.Helpers
 {
-    public class FileNameParser
+    public static class FileNameParser
     {
-        public string RemoveDotFileExtensionInFileName (string name)
+        public static string RemoveDotFileExtensionInFileName (string name)
         {
             if (name.Contains("."))
             {

@@ -7,6 +7,6 @@ namespace MakerSweet.Services.Helpers
 {
     public interface IGcodeCreator
     {
-        string CreateCircularGCodeFile(SvgFile svgFile);
+        string CreateCircularGCodeFile(string svgFileName, double safeZHeight);
     }
 }

@@ -9,15 +9,15 @@ namespace MakerSweet.Services.Models
 {
     public class GcodeFile:File
     {
-        public GcodeFile(string name) : base(name)
+        public GcodeFile(string name, double safeZHeight) : base(name)
         {
             FileExtension = ".nc";
             FullFileName = FileName + FileExtension;
-            FileFooter = GetFileFooter();
-            FileHeader = GetFileHeader(this.DateCreated);
+            FileFooter = GetFileFooter(safeZHeight);
+            FileHeader = GetFileHeader(this.DateCreated, safeZHeight);
         }        
 
-        private static string GetFileFooter()
+        private static string GetFileFooter(double safeZHeight)
         {
             /*
              * G00
@@ -29,10 +29,10 @@ namespace MakerSweet.Services.Models
                M30
                End of program, with return to program top
             */
-            return $"G00{Environment.NewLine}{Constants.SAFETY_HEIGHT}{Environment.NewLine}M05{Environment.NewLine}M30";
+            return $"G00{Environment.NewLine}Z{safeZHeight}{Environment.NewLine}M05{Environment.NewLine}M30";
         }
 
-        private static string GetFileHeader(DateTime dateTime)
+        private static string GetFileHeader(DateTime dateTime, double safeZHeight)
         {
             /*
             % : Pgm start/end delimiter
@@ -47,7 +47,7 @@ namespace MakerSweet.Services.Models
             Z5.5 : Move up 5.5 units from zero
             M03 : Spindle on, clockwise rotation
             */
-            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}{Constants.SAFETY_HEIGHT}{Environment.NewLine}M03";
+            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}Z{safeZHeight}{Environment.NewLine}M03";
         }
 
         public string FileFooter { get; private set; }

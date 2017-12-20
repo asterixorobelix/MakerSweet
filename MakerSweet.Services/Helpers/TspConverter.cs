@@ -14,8 +14,7 @@ namespace MakerSweet.Services.Helpers
 
         public string ConvertCircleSVGtoTSP(string svgFileName)
         {
-            var filenameParser = new FileNameParser();
-            svgFileName = filenameParser.RemoveDotFileExtensionInFileName(svgFileName);
+            svgFileName = FileNameParser.RemoveDotFileExtensionInFileName(svgFileName);
 
             var svgFile = new SvgFile(svgFileName);
             var tspFile = new TspFile(svgFile.FileName)

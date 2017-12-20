@@ -13,5 +13,11 @@ namespace MakerSweet.Web
         public const double SIZING_FACTOR_DEFAULT = 0.8;
         public const string GENERIC_ERROR_MESSAGE = "Oops, something went wrong";
         public const string FEED_RATE_PLACEHOLDER = "Feedrate";
+        public const double SAFETY_HEIGHT_DEFAULT = 5.5;
+        public const double BIT_SIZE_DEFAULT = 4.3;
+        public const double DEPTH_PER_PASS_DEFAULT = 1.0;
+        public const double CUT_FEEDRATE_DEFAULT = 100;
+        public const double PLUNGE_FEEDRATE_DEFAULT = 30;
+        public const double TARGET_DEPTH_DEFAULT = 3.5;
     }
 }
