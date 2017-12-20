@@ -5,7 +5,7 @@ using System.Text;
 
 namespace MakerSweet.Services.Helpers
 {
-    interface IGcodeCreator
+    public interface IGcodeCreator
     {
         string CreateCircularGCodeFile(SvgFile svgFile);
     }

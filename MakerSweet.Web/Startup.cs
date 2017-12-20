@@ -46,6 +46,7 @@ namespace MakerSweet.Web
             services.AddSingleton<IEmailSender, EmailSender>();
             services.AddScoped<IStippler, Stippler>();
             services.AddScoped<ITspConverter, TspConverter>();
+            services.AddScoped<IGcodeCreator,GCodeCreator>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

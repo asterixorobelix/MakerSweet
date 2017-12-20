@@ -1,0 +1,39 @@
+﻿@page
+@model MakerSweet.Web.Pages.Gcode.CreateCircularGcodeFileModel
+@{
+    ViewData["Title"] = "CreateCircularGcodeFile";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>Create Circular Gcode File</h2>
+
+<div>
+    <small>Choose the file for which you want to create a TSP file!</small>
+</div>
+<img class=" image img-responsive" src="https://c1.staticflickr.com/7/6093/6883462858_4d1a5a8720_b.jpg" />
+<div>
+    @Model.Message
+</div>
+<form asp-action="CreateCircularGcodeFile" method="post">
+    <div>
+        @Html.LabelFor(x => x.FeedRate)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.FeedRate, new { @placeholder = Constants.FEED_RATE_PLACEHOLDER, @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.FeedRate)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.SafeZHeight)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.SafeZHeight, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER, @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.SafeZHeight)
+    </div>
+    <div class="btnDiv">
+        <button class="btn btn-default" type="submit">Submit</button>
+    </div>
+</form>

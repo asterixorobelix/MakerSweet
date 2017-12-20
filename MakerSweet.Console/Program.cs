@@ -35,10 +35,10 @@ namespace MakerSweet.ConsoleApp
             //var stipplerServices = serviceProvider.GetRequiredService<IStippler>();
             //Console.WriteLine(stipplerServices.CallStippler(png, 1000, 0.8));
 
-            var tspServices = serviceProvider.GetRequiredService<ITspConverter>();
+            var tspServices = serviceProvider.GetRequiredService<IGcodeCreator>();
             //Console.WriteLine(tspServices.ConvertCircleSVGtoTSP(svg));
 
-            Console.WriteLine(tspServices.ReorderSVGAccordingtoTSPsol(svg, tspSol, tsp));
+            //Console.WriteLine(tspServices.ReorderSVGAccordingtoTSPsol(svg, tspSol, tsp));
 
             Console.Read();
         }

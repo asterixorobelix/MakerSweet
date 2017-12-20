@@ -12,5 +12,6 @@ namespace MakerSweet.Web
         public const int STIPPLE_DEFAULT = 1000;
         public const double SIZING_FACTOR_DEFAULT = 0.8;
         public const string GENERIC_ERROR_MESSAGE = "Oops, something went wrong";
+        public const string FEED_RATE_PLACEHOLDER = "Feedrate";
     }
 }
