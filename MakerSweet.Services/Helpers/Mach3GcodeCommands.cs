@@ -39,7 +39,7 @@ namespace MakerSweet.Services.Helpers
             G00 : Rapid positioning
             M03 : Spindle on, clockwise rotation
             */
-            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}{Environment.NewLine}M03";
+            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}M03";
         }
         public static string FeedRate(double feed)
         {

@@ -7,8 +7,8 @@ namespace MakerSweet.Services.Helpers
 {
     public class GCodeCreator:IGcodeCreator
     {
-        private readonly SvgFile svgFile;
-        private readonly GcodeFile gcodeFile;
+        public SvgFile svgFile {private get; set; }
+        public GcodeFile gcodeFile {private get; set; }
 
         public string svgFileName { private get; set; }
         public double safeZHeight { private get; set; }
@@ -18,17 +18,13 @@ namespace MakerSweet.Services.Helpers
         public double finalDepth { private get; set; }
         public double bitsize { private get; set; }
 
-        public GCodeCreator()
-        {
-            svgFile = new SvgFile(svgFileName);
-            gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}", safeZHeight, cutFeedRate, plungeFeedRate, depthPerPass, finalDepth, bitsize);
-        }
-
         public string CreateCircularGCodeFile()
         {
             try
             {
-                using(StreamReader svgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FullFileName}"))
+                svgFile = new SvgFile(svgFileName);
+                gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}", safeZHeight, cutFeedRate, plungeFeedRate, depthPerPass, finalDepth, bitsize);
+                using (StreamReader svgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FullFileName}"))
                 {
                     using(StreamWriter gcodeWriter = new StreamWriter($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{gcodeFile.FullFileName}"))
                     {
@@ -37,9 +33,9 @@ namespace MakerSweet.Services.Helpers
                         while (svgReader.ReadLine() != null)
                         {
                             string line = svgReader.ReadLine();
-                            if(!line.Contains("circle"))
+                            if(line.Contains("circle"))
                             {
-                                var CxCyR = new List<int>();
+                                var CxCyR = new List<double>();
                                 CxCyR = SVGParser.ParseCircleSVGLine(line);
                                 gcodeWriter.WriteLine(MillCircle(gcodeFile, CxCyR));
                             }
@@ -56,7 +52,7 @@ namespace MakerSweet.Services.Helpers
         }
 
         //finish this
-        public static string MillCircle(GcodeFile gcodeFile, List<int> xyR)
+        public static string MillCircle(GcodeFile gcodeFile, List<double> xyR)
         {
             //Rapid position to XY location
             var str1 =Mach3GcodeCommands.RapidMoveToXYLocation(gcodeFile.SafeZHeight, xyR[0], xyR[1]);

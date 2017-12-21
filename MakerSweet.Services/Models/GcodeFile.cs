@@ -15,7 +15,7 @@ namespace MakerSweet.Services.Models
             FileExtension = ".nc";
             FullFileName = FileName + FileExtension;
             FileFooter = Mach3GcodeCommands.GetFileFooter(safeZHeight);
-            FileHeader = Mach3GcodeCommands.GetFileHeader(this.DateCreated, safeZHeight);
+            FileHeader = Mach3GcodeCommands.GetFileHeader(this.DateCreated);
             CutFeedRate = cutFeedRate;
             PlungeFeedRate = plungeFeedRate;
             SafeZHeight = safeZHeight;
