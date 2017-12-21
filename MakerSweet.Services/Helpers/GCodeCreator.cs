@@ -23,7 +23,7 @@ namespace MakerSweet.Services.Helpers
             try
             {
                 svgFile = new SvgFile(svgFileName);
-                gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}", safeZHeight, cutFeedRate, plungeFeedRate, depthPerPass, finalDepth, bitsize);
+                gcodeFile = new GcodeFile(svgFile.FileName, safeZHeight, cutFeedRate, plungeFeedRate, depthPerPass, finalDepth, bitsize);
                 using (StreamReader svgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FullFileName}"))
                 {
                     using(StreamWriter gcodeWriter = new StreamWriter($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{gcodeFile.FullFileName}"))

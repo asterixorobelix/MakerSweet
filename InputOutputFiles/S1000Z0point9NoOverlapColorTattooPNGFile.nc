@@ -1,11 +1,10 @@
-(This file was created on 2017/12/21 09:59:22 PM)
+(This file was created on 2017/12/21 10:14:21 PM)
 G17
 G21
 G90
 G80
 G64
 G00
-
 M03
 G0 Z5.5
 G0 X306.982 Y103.168
