@@ -24,7 +24,8 @@ namespace MakerSweet.Services.Helpers
                             string line = svgReader.ReadLine();
                             if(!line.Contains("circle"))
                             {
-                                ConvertCircleSVGLineToGCode(line);
+                                var CxCyR = new List<int>();
+                                CxCyR = SVGParser.ParseCircleSVGLine(line);
                             }
                         }
                         gcodeWriter.WriteLine(gcodeFile.FileFooter);
@@ -36,51 +37,7 @@ namespace MakerSweet.Services.Helpers
             catch (Exception e)
             {
                 return $"couldn't open file {svgFileName}. {e.Message}";
-            }
-            
-        }
-
-        private List<int> ConvertCircleSVGLineToGCode(string line)
-        {
-            string[] coords = line.Split("=");
-            var CxCyR = new List<int>();
-            if (coords.Length != 0)
-            {
-                int parsedResult;                
-                int.TryParse(coords[0],out parsedResult);
-                CxCyR.Add(parsedResult);
-                int.TryParse(coords[1], out parsedResult);
-                CxCyR.Add(parsedResult);
-                int.TryParse(coords[2], out parsedResult);
-                CxCyR.Add(parsedResult);
-            }
-            return CxCyR;
-        }
-
-        private static string FeedRate(double feed)
-        {
-            return $"F{feed}{Environment.NewLine}";
-        }
-        private static string RapidMove(double z)
-        {
-            //G00 = Rapid positioning
-            return $"G0 Z{z}{Environment.NewLine}";
-        }
-        private static string RapidMove(double x, double y)
-        {
-            //G00 = Rapid positioning
-            return $"G0 X{x} Y{y}{Environment.NewLine}";
-        }
-
-        private static string RapidMove(double x, double y, double z)
-        {
-            //G00 = Rapid positioning
-            return $"G0 X{x} Y{y} Z{z}{Environment.NewLine}";
-        }
-
-        private static string ClockWiseArc(double i)
-        {
-            return $"G2 I{i}{Environment.NewLine}";
+            }            
         }
     }
 }
