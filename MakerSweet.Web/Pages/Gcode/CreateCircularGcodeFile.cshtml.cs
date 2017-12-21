@@ -33,6 +33,7 @@ namespace MakerSweet.Web.Pages.Gcode
             {
                 if (DepthPerPass <= FinalDepth)
                 {
+                    // now this class knows about GCodeCreator! Fix this
                     IGcodeCreator _gcodeCreator = new GCodeCreator(svgFileName: InputFileName, safeZHeight: SafeZHeight, cutFeedRate: CutFeedRate, depthPerPass: DepthPerPass, finalDepth: FinalDepth, bitsize: BitSize, plungeFeedRate: PlungeFeedRate);
                     Message = _gcodeCreator.CreateCircularGCodeFile();
                     return Page();
