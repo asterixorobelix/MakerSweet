@@ -25,7 +25,7 @@ namespace MakerSweet.Services.Helpers
             return $"G00{Environment.NewLine}Z{safeZHeight}{Environment.NewLine}M05{Environment.NewLine}M30";
         }
 
-        public static string GetFileHeader(DateTime dateTime, double safeZHeight)
+        public static string GetFileHeader(DateTime dateTime)
         {
             /*
             % : Pgm start/end delimiter
