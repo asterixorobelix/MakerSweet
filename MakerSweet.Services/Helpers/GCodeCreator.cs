@@ -7,13 +7,11 @@ namespace MakerSweet.Services.Helpers
 {
     public class GCodeCreator:IGcodeCreator
     {
-        private SvgFile svgFile;
-        private GcodeFile gcodeFile;
-        private readonly double _iterations;
+        private readonly SvgFile svgFile;
+        private readonly GcodeFile gcodeFile;
 
         public GCodeCreator(string svgFileName, double safeZHeight, double cutFeedRate, double plungeFeedRate, double depthPerPass, double finalDepth, double bitsize)
         {
-            _iterations = GetIterations(finalDepth,depthPerPass);
             svgFile = new SvgFile(svgFileName);
             gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}", safeZHeight, cutFeedRate, plungeFeedRate, depthPerPass, finalDepth, bitsize);
         }
@@ -35,7 +33,7 @@ namespace MakerSweet.Services.Helpers
                             {
                                 var CxCyR = new List<int>();
                                 CxCyR = SVGParser.ParseCircleSVGLine(line);
-                                gcodeWriter.WriteLine( MillCircle(gcodeFile, CxCyR));
+                                gcodeWriter.WriteLine(MillCircle(gcodeFile, CxCyR));
                             }
                         }
                         gcodeWriter.WriteLine(gcodeFile.FileFooter);
@@ -49,7 +47,8 @@ namespace MakerSweet.Services.Helpers
             }            
         }
 
-        public string MillCircle(GcodeFile gcodeFile, List<int> xyR)
+        //finish this
+        public static string MillCircle(GcodeFile gcodeFile, List<int> xyR)
         {
             //Rapid position to XY location
             var str1 =Mach3GcodeCommands.RapidMoveToXYLocation(gcodeFile.SafeZHeight, xyR[0], xyR[1]);
