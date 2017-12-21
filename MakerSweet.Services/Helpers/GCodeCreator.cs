@@ -10,7 +10,15 @@ namespace MakerSweet.Services.Helpers
         private readonly SvgFile svgFile;
         private readonly GcodeFile gcodeFile;
 
-        public GCodeCreator(string svgFileName, double safeZHeight, double cutFeedRate, double plungeFeedRate, double depthPerPass, double finalDepth, double bitsize)
+        public string svgFileName { private get; set; }
+        public double safeZHeight { private get; set; }
+        public double cutFeedRate { private get; set; }
+        public double plungeFeedRate { private get; set; }
+        public double depthPerPass { private get; set; }
+        public double finalDepth { private get; set; }
+        public double bitsize { private get; set; }
+
+        public GCodeCreator()
         {
             svgFile = new SvgFile(svgFileName);
             gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}", safeZHeight, cutFeedRate, plungeFeedRate, depthPerPass, finalDepth, bitsize);

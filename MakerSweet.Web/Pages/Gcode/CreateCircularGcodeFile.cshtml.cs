@@ -11,8 +11,9 @@ namespace MakerSweet.Web.Pages.Gcode
 {
     public class CreateCircularGcodeFileModel : PageModel
     {
+        private readonly IGcodeCreator _gcodeCreator;
 
-        public CreateCircularGcodeFileModel()
+        public CreateCircularGcodeFileModel(IGcodeCreator gcodeCreator)
         {
             SafeZHeight = Constants.SAFETY_HEIGHT_DEFAULT;
             BitSize = Constants.BIT_SIZE_DEFAULT;
@@ -20,6 +21,7 @@ namespace MakerSweet.Web.Pages.Gcode
             CutFeedRate = Constants.CUT_FEEDRATE_DEFAULT;
             FinalDepth = Constants.TARGET_DEPTH_DEFAULT;
             PlungeFeedRate = Constants.PLUNGE_FEEDRATE_DEFAULT;
+            _gcodeCreator = gcodeCreator;
         }
 
         public IActionResult OnGet()
@@ -33,8 +35,14 @@ namespace MakerSweet.Web.Pages.Gcode
             {
                 if (DepthPerPass <= FinalDepth)
                 {
-                    // now this class knows about GCodeCreator! Fix this
-                    IGcodeCreator _gcodeCreator = new GCodeCreator(svgFileName: InputFileName, safeZHeight: SafeZHeight, cutFeedRate: CutFeedRate, depthPerPass: DepthPerPass, finalDepth: FinalDepth, bitsize: BitSize, plungeFeedRate: PlungeFeedRate);
+                    _gcodeCreator.safeZHeight = SafeZHeight;
+                    _gcodeCreator.svgFileName = InputFileName;
+                    _gcodeCreator.cutFeedRate = CutFeedRate;
+                    _gcodeCreator.depthPerPass = DepthPerPass;
+                    _gcodeCreator.finalDepth = FinalDepth;
+                    _gcodeCreator.bitsize = BitSize;
+                    _gcodeCreator.plungeFeedRate=PlungeFeedRate;
+
                     Message = _gcodeCreator.CreateCircularGCodeFile();
                     return Page();
                 }
