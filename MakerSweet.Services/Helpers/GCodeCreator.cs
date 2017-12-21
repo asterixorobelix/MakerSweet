@@ -7,12 +7,12 @@ namespace MakerSweet.Services.Helpers
 {
     public class GCodeCreator:IGcodeCreator
     {
-        public string CreateCircularGCodeFile(string svgFileName, double safeZHeight)
+        public string CreateCircularGCodeFile(string svgFileName, double safeZHeight, double cutFeedRate, double plungeFeedRate, double depthPerPass, double finalDepth, double bitsize)
         {
             try
             {
                 var svgFile = new SvgFile(svgFileName);
-                var gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}", safeZHeight);
+                var gcodeFile = new GcodeFile($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FileName}", safeZHeight, cutFeedRate, plungeFeedRate, depthPerPass, finalDepth, bitsize);
                 using(StreamReader svgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FullFileName}"))
                 {
                     using(StreamWriter gcodeWriter = new StreamWriter($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{gcodeFile.FullFileName}"))

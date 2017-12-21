@@ -10,12 +10,18 @@ namespace MakerSweet.Services.Models
 {
     public class GcodeFile:File
     {
-        public GcodeFile(string name, double safeZHeight) : base(name)
+        public GcodeFile(string name, double safeZHeight, double cutFeedRate, double plungeFeedRate, double depthPerPass, double finalDepth, double bitsize) : base(name)
         {
             FileExtension = ".nc";
             FullFileName = FileName + FileExtension;
             FileFooter = Mach3GcodeCommands.GetFileFooter(safeZHeight);
             FileHeader = Mach3GcodeCommands.GetFileHeader(this.DateCreated, safeZHeight);
+            CutFeedRate = cutFeedRate;
+            PlungeFeedRate = plungeFeedRate;
+            SafeZHeight = safeZHeight;
+            DepthPerPass = depthPerPass;
+            FinalDepth = finalDepth;
+            BitSize = bitsize;
         }
 
         public double CutFeedRate { get; private set; }
