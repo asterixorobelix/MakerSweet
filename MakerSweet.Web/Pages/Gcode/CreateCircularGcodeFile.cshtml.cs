@@ -11,11 +11,9 @@ namespace MakerSweet.Web.Pages.Gcode
 {
     public class CreateCircularGcodeFileModel : PageModel
     {
-        private readonly IGcodeCreator _gcodeCreator;
 
-        public CreateCircularGcodeFileModel(IGcodeCreator gcodeCreator)
+        public CreateCircularGcodeFileModel()
         {
-            _gcodeCreator = gcodeCreator;
             SafeZHeight = Constants.SAFETY_HEIGHT_DEFAULT;
             BitSize = Constants.BIT_SIZE_DEFAULT;
             DepthPerPass = Constants.DEPTH_PER_PASS_DEFAULT;
@@ -35,7 +33,8 @@ namespace MakerSweet.Web.Pages.Gcode
             {
                 if (DepthPerPass <= FinalDepth)
                 {
-                    Message = _gcodeCreator.CreateCircularGCodeFile(svgFileName: InputFileName, safeZHeight: SafeZHeight, cutFeedRate: CutFeedRate, depthPerPass: DepthPerPass, finalDepth: FinalDepth, bitsize: BitSize, plungeFeedRate: PlungeFeedRate);
+                    IGcodeCreator _gcodeCreator = new GCodeCreator(svgFileName: InputFileName, safeZHeight: SafeZHeight, cutFeedRate: CutFeedRate, depthPerPass: DepthPerPass, finalDepth: FinalDepth, bitsize: BitSize, plungeFeedRate: PlungeFeedRate);
+                    Message = _gcodeCreator.CreateCircularGCodeFile();
                     return Page();
                 }
                 Message = $" Your depth per pass of {DepthPerPass} cannot be greater than the target depth of {FinalDepth}";

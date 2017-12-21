@@ -37,10 +37,9 @@ namespace MakerSweet.Services.Helpers
             G80 : Cancel canned cycle
             G64 : Default cutting mode (cancel exact stop check mode)
             G00 : Rapid positioning
-            Z5.5 : Move up 5.5 units from zero
             M03 : Spindle on, clockwise rotation
             */
-            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}Z{safeZHeight}{Environment.NewLine}M03";
+            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}{Environment.NewLine}M03";
         }
         public static string FeedRate(double feed)
         {
@@ -66,6 +65,15 @@ namespace MakerSweet.Services.Helpers
         public static string ClockWiseArc(double i)
         {
             return $"G2 I{i}{Environment.NewLine}";
+        }
+
+        public static string RapidMoveToXYLocation(double z, double x, double y)
+        {
+            var up = Mach3GcodeCommands.RapidMove(z);
+            var across = Mach3GcodeCommands.RapidMove(x, y);
+            var down = Mach3GcodeCommands.RapidMove(-z);
+
+            return up + across + down;
         }
     }
 }
