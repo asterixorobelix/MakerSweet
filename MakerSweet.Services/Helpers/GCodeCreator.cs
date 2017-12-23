@@ -17,6 +17,7 @@ namespace MakerSweet.Services.Helpers
         public double depthPerPass { private get; set; }
         public double finalDepth { private get; set; }
         public double bitsize { private get; set; }
+        public double stepOver { private get; set; }
 
         public string CreateCircularGCodeFile()
         {

@@ -22,6 +22,8 @@ namespace MakerSweet.Web.Pages.Gcode
             FinalDepth = Constants.TARGET_DEPTH_DEFAULT;
             PlungeFeedRate = Constants.PLUNGE_FEEDRATE_DEFAULT;
             _gcodeCreator = gcodeCreator;
+            StepOver = Constants.STEP_OVER_DEFAULT;
+
         }
 
         public IActionResult OnGet()
@@ -42,6 +44,7 @@ namespace MakerSweet.Web.Pages.Gcode
                     _gcodeCreator.finalDepth = FinalDepth;
                     _gcodeCreator.bitsize = BitSize;
                     _gcodeCreator.plungeFeedRate=PlungeFeedRate;
+                    _gcodeCreator.stepOver = StepOver;
 
                     Message = _gcodeCreator.CreateCircularGCodeFile();
                     return Page();
@@ -70,6 +73,21 @@ namespace MakerSweet.Web.Pages.Gcode
         [Required]
         [BindProperty]
         public double BitSize { get; set; }
+        [Required]
+        [BindProperty]
+        public double StepOver { get; set; }
+        [Required]
+        [BindProperty]
+        public double Coin1Size { get; set; }
+        [Required]
+        [BindProperty]
+        public double Coin2Size { get; set; }
+        [Required]
+        [BindProperty]
+        public double Coin3Size { get; set; }
+
+        [BindProperty]
+        public double Coin4Size { get; set; }
         [Required]
         [BindProperty]
         public string InputFileName { get; set; }

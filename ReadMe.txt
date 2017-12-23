@@ -29,3 +29,9 @@ GCode
 http://www.warrensbrain.com/gcode-to-english-translator.html
 https://gorest.co.in/tools/gcode-translator.html
 
+Todo
+Conditional validation - coin stippler page - https://github.com/JeremySkinner/FluentValidation
+Rename page to coinstippler page
+finish tspsol page
+gcode page should scale according to size of smallest coin
+

@@ -78,6 +78,42 @@
     <div>
         @Html.ValidationMessageFor(x => x.DepthPerPass)
     </div>
+    <div>
+        @Html.LabelFor(x => x.Coin1Size) (mm)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.Coin1Size, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.Coin1Size)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.Coin2Size) (mm)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.Coin2Size, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.Coin2Size)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.Coin3Size) (mm)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.Coin3Size, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.Coin3Size)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.Coin4Size) (mm)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.Coin4Size, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.Coin4Size)
+    </div>
     <div class="btnDiv">
         <button class="btn btn-default" type="submit">Submit</button>
     </div>

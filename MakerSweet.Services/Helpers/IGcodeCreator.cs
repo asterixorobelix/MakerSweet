@@ -16,5 +16,6 @@ namespace MakerSweet.Services.Helpers
         double depthPerPass { set; }
         double finalDepth {  set; }
         double bitsize {  set; }
+        double stepOver { set; }
     }
 }
