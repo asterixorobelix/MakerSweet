@@ -39,41 +39,85 @@ namespace MakerSweet.Services.Helpers
             G00 : Rapid positioning
             M03 : Spindle on, clockwise rotation
             */
-            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}M03";
+            return $"(This file was created on {dateTime}){Environment.NewLine}G17{Environment.NewLine}G21{Environment.NewLine}G90{Environment.NewLine}G80{Environment.NewLine}G64{Environment.NewLine}G00{Environment.NewLine}M03{Environment.NewLine}";
         }
         public static string FeedRate(double feed)
         {
-            return $"F{feed}{Environment.NewLine}";
+            return $"F{feed} ";
         }
-        public static string RapidMove(double z)
+
+        public static string RapidPositioning()
         {
             //G00 = Rapid positioning
-            return $"G0 Z{z}{Environment.NewLine}";
+            return $"G00 ";
         }
-        public static string RapidMove(double x, double y)
+        public static string MoveZ(double z)
         {
-            //G00 = Rapid positioning
-            return $"G0 X{x} Y{y}{Environment.NewLine}";
-        }
-
-        public static string RapidMove(double x, double y, double z)
-        {
-            //G00 = Rapid positioning
-            return $"G0 X{x} Y{y} Z{z}{Environment.NewLine}";
+            return $"Z{z} ";
         }
 
-        public static string ClockWiseArc(double i)
+        public static string MoveX (double x)
         {
-            return $"G2 I{i}{Environment.NewLine}";
+            return $"X{x} ";
         }
 
-        public static string RapidMoveToXYLocation(double z, double x, double y)
+        public static string MoveY(double y)
         {
-            var up = Mach3GcodeCommands.RapidMove(z);
-            var across = Mach3GcodeCommands.RapidMove(x, y);
-            var down = Mach3GcodeCommands.RapidMove(-z);
+            return $"Y{y} ";
+        }
+        public static string MoveXY(double x, double y)
+        {
+            return $"X{x} Y{y} ";
+        }
 
-            return up + across + down;
+        public static string MoveXYZ(double x, double y, double z)
+        {
+            return $"X{x} Y{y} Z{z} ";
+        }
+
+        public static string ArcCenterXaxis(double i)
+        {
+            return $"I{i} ";
+        }
+        public static string ArcCenterYaxis(double j)
+        {
+            return $"J{j} ";
+        }
+
+        //When a tool moves along a line to the specified position at the feed rate specified.
+        public static string LinearInterpolation()
+        {
+            return $"G01 ";
+        }
+        public static string CircularClockwiseInterpolation()
+        {
+            return $"G02 ";
+        }
+
+        public static string RapidMoveToXYLocation(double x, double y)
+        {
+            //Eg G00 X0.422 Y25
+            var rapid = Mach3GcodeCommands.RapidPositioning();
+            var across = Mach3GcodeCommands.MoveXY(x, y);
+            return rapid+across +Environment.NewLine;
+        }
+
+        public static string ZPlunge(double z, double feedrate)
+        {
+            //Eg: G01 F30 Z-1
+            return LinearInterpolation() + FeedRate(feedrate) + MoveZ(z) +Environment.NewLine;
+        }
+
+        public static string CutCircleXY(double f,double x, double y, double i, double j)
+        {
+            //eg: G02 F300 X-0.211 Y24.634537 I-0.422 J0
+            return CircularClockwiseInterpolation() + FeedRate(f) + MoveX(x) + MoveY(y) + ArcCenterXaxis(i) + ArcCenterYaxis(j) + Environment.NewLine;
+        }
+
+        public static string LinearInterpolationXaxis(double x)
+        {
+            //eg: G01 X0.25
+            return LinearInterpolation() + MoveX(x) + Environment.NewLine;
         }
     }
 }

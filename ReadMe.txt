@@ -24,3 +24,8 @@ https://www.nuget.org/packages/TSPLib.Net/
 
 Image processing library for .net core
 https://github.com/JaCraig/Structure.Sketching
+
+GCode
+http://www.warrensbrain.com/gcode-to-english-translator.html
+https://gorest.co.in/tools/gcode-translator.html
+
