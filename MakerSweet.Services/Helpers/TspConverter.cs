@@ -83,8 +83,10 @@ namespace MakerSweet.Services.Helpers
             }
         }
 
-        public string ReorderSVGAccordingtoTSPsol(SvgFile oldSvgFile, TspSolFile tspSolFile, TspFile tspFile)
+        public string ReorderSVGAccordingtoTSPsol(string tspSolFile, string FileToReorder)
         {
+            var tspSolfile = new TspSolFile(tspSolFile);
+            var oldSvgFile = new SvgFile(FileToReorder);
             try
             {
                 using(StreamReader oldSvgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{oldSvgFile.FullFileName}"))
@@ -93,7 +95,7 @@ namespace MakerSweet.Services.Helpers
                     
                     using(StreamWriter reorderedSvgWriter = new StreamWriter($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{reorderedSvgFile.FullFileName}"))
                     {
-                        List<int> tspSolOrder = GetTspSolLineOrder(tspSolFile, tspFile);
+                        List<int> tspSolOrder = GetTspSolLineOrder(tspSolfile);
                         string line;
                         while ((line=oldSvgReader.ReadLine()) != null)
                         {
@@ -161,8 +163,15 @@ namespace MakerSweet.Services.Helpers
          0 586 22  //Begins with city 0, travel to city 586, which is a distance of 22 units
          586 15 18
          15 477 22
+         
+
+        ***PDF of optimal tour***unzip this file***
+
+
+
+        Additional Output: https://neos-server.org/neos/jobs/5750000/5754106-lLSnsAIU-solver-output.zip
          */
-        private static List<int> GetTspSolLineOrder(TspSolFile tspSolFile, TspFile tspFile)
+        private static List<int> GetTspSolLineOrder(TspSolFile tspSolFile)
         {
             var tspSolOrder = new List<int>();
             string line;
@@ -175,10 +184,10 @@ namespace MakerSweet.Services.Helpers
                     while ((line = tspSolReader.ReadLine()) != null)
                     {
                         int.TryParse((line.Split(null))[0],out firstSvgLineNumber);//split at whitespace, take first part and attempt to parse to int
-                        if (firstSvgLineNumber != tspFile.Dimension)
-                        {
-                            tspSolOrder.Add(firstSvgLineNumber);
-                        }
+                        //if (firstSvgLineNumber != tspFile.Dimension)
+                        //{
+                        //    tspSolOrder.Add(firstSvgLineNumber);
+                        //}
                     }
                     return tspSolOrder;
                 }

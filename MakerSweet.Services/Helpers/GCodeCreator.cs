@@ -56,7 +56,7 @@ namespace MakerSweet.Services.Helpers
         public static string MillCircle(GcodeFile gcodeFile, List<double> xyR)
         {
             //Rapid position to XY location
-            var str1 =Mach3GcodeCommands.RapidMoveToXYLocation(gcodeFile.SafeZHeight, xyR[0], xyR[1]);
+            var str1 =Mach3GcodeCommands.RapidMoveToXYLocation( xyR[0], xyR[1]);
 
             var iterations = GetIterations(gcodeFile.FinalDepth, gcodeFile.DepthPerPass);
 

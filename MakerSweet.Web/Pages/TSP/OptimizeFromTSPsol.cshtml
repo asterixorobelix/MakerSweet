@@ -7,3 +7,33 @@
 
 <h2>Optimize According to TSP Sol</h2>
 
+<div>
+    <small>Choose the file which you want to optimize according to the TspSol file!</small>
+</div>
+<img class=" image img-responsive" src="https://i.stack.imgur.com/4rNiE.png" />
+<div>
+    @Model.Message
+</div>
+<form asp-action="OptimizeFromTSPsol" method="post">
+    <div>
+        @Html.LabelFor(x => x.TSPSolFile)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.TSPSolFile, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER, @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.TSPSolFile)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.FileToReorder)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.FileToReorder, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER, @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.FileToReorder)
+    </div>
+    <div class="btnDiv">
+        <button class="btn btn-default" type="submit">Submit</button>
+    </div>
+</form>

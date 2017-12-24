@@ -6,6 +6,6 @@ namespace MakerSweet.Services.Helpers
     {
         //returns Constants.SUCCESS or Constants.FAILURE if tspFile was successfully created or not
         string ConvertCircleSVGtoTSP(string svgFileName);
-        string ReorderSVGAccordingtoTSPsol(SvgFile oldSvgFile,TspSolFile tspSolFile, TspFile tspFile);
+        string ReorderSVGAccordingtoTSPsol(string fileToReorder,string tspSolFile);
     }
 }
