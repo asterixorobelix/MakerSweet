@@ -96,16 +96,30 @@ namespace MakerSweet.Services.Helpers
                     using(StreamWriter reorderedSvgWriter = new StreamWriter($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{reorderedSvgFile.FullFileName}"))
                     {
                         List<int> tspSolOrder = GetTspSolLineOrder(tspSolfile);
-                        string line;
-                        while ((line=oldSvgReader.ReadLine()) != null)
+
+                        if (tspSolOrder.Count > 1)
                         {
-                            if (!line.Contains("circle"))
+                            int numberOfCities = tspSolOrder[0];
+                            tspSolOrder.RemoveAt(0);
+                            string line;
+                            var lineorder = currentLineOrder(oldSvgFile);
+                            var count = 0;
+                            while ((line = oldSvgReader.ReadLine()) != null)
                             {
-                                reorderedSvgWriter.WriteLine(line);
+                                if (!line.Contains("circle"))
+                                {
+                                    reorderedSvgWriter.WriteLine(line);
+                                }
+                                else
+                                {
+                                    var correctOrder = tspSolOrder[count];
+                                    reorderedSvgWriter.WriteLine(lineorder[correctOrder]);
+                                    count++;
+                                }
                             }
-                                                       
+                            return $"{Constants.SUCCESS}-The file {reorderedSvgFile.FullFileName} has been created.";
                         }
-                        return Constants.SUCCESS;
+                        return Constants.FAILURE;
                     }                    
                 }
             }
@@ -195,7 +209,6 @@ namespace MakerSweet.Services.Helpers
                             {
                                 tspSolOrder.Add(firstTspCity);
                             }
-
                         }
                         else if(linesplit.Length == 3)
                         {
@@ -216,6 +229,27 @@ namespace MakerSweet.Services.Helpers
                 Console.WriteLine(e.Message);
                 return tspSolOrder;
             }
+        }
+
+        private static Dictionary<int,string> currentLineOrder(SvgFile svgFile)
+        {
+            var lineOrder = new Dictionary<int, string>();
+
+            using (StreamReader SvgReader = new StreamReader($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{svgFile.FullFileName}"))
+            {
+                var count = 0;
+                string line;
+
+                while ((line = SvgReader.ReadLine()) != null)
+                {
+                    if (line.Contains("circle"))
+                    {
+                        lineOrder.Add(count, line);
+                        count++;
+                    }
+                }
+            }
+            return lineOrder;
         }
     }
 }
