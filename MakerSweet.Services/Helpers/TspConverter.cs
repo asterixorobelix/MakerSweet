@@ -126,7 +126,7 @@ namespace MakerSweet.Services.Helpers
             catch (Exception e)
             {
                 Console.WriteLine(e.Message);
-                return Constants.FAILURE;
+                return $"{Constants.FAILURE}- {e.Message}";
             }
         }
 

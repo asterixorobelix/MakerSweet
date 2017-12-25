@@ -25,7 +25,7 @@ namespace MakerSweet.Web.Pages.TSP
         {
             if (ModelState.IsValid)
             {
-                Message =_tspConverter.ReorderSVGAccordingtoTSPsol(FileToReorder,TSPSolFile);
+                Message =_tspConverter.ReorderSVGAccordingtoTSPsol(TSPSolFile, FileToReorder);
                 return Page();
             }
             return Page();
