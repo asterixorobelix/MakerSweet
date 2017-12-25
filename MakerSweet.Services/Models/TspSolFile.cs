@@ -7,7 +7,7 @@ namespace MakerSweet.Services
     {
         public TspSolFile(string name):base(name)
         {
-            FileExtension = ".sol";
+            FileExtension = ".tspsol";
             FullFileName = FileName + FileExtension;
         }
     }

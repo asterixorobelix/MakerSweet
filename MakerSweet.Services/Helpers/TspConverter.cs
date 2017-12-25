@@ -171,11 +171,13 @@ namespace MakerSweet.Services.Helpers
 
         Additional Output: https://neos-server.org/neos/jobs/5750000/5754106-lLSnsAIU-solver-output.zip
          */
+         
+            //returns a list of integers. First is the number of cities considered. The rest of the numbers are the order of the optimal city tour, where each number represents a city in the original .tsp file
         private static List<int> GetTspSolLineOrder(TspSolFile tspSolFile)
         {
             var tspSolOrder = new List<int>();
             string line;
-            int firstSvgLineNumber;
+            int firstTspCity, secondTspCity, tspDistance;
 
             try
             {
@@ -183,11 +185,28 @@ namespace MakerSweet.Services.Helpers
                 {
                     while ((line = tspSolReader.ReadLine()) != null)
                     {
-                        int.TryParse((line.Split(null))[0],out firstSvgLineNumber);//split at whitespace, take first part and attempt to parse to int
-                        //if (firstSvgLineNumber != tspFile.Dimension)
-                        //{
-                        //    tspSolOrder.Add(firstSvgLineNumber);
-                        //}
+                        var linesplit = line.Split(null);
+                        if (linesplit.Length==2 )
+                        {
+                            int.TryParse((line.Split(null))[0], out firstTspCity);//split at whitespace, take first part and attempt to parse to int
+                            int.TryParse((line.Split(null))[1], out secondTspCity);
+
+                            if (firstTspCity == secondTspCity && firstTspCity != 0)// eg: 5 5 
+                            {
+                                tspSolOrder.Add(firstTspCity);
+                            }
+
+                        }
+                        else if(linesplit.Length == 3)
+                        {
+                            int.TryParse((line.Split(null))[0], out firstTspCity);//split at whitespace, take first part and attempt to parse to int
+                            int.TryParse((line.Split(null))[1], out secondTspCity);
+                            int.TryParse((line.Split(null))[2], out tspDistance);
+                            if (tspDistance != 0 && (firstTspCity != 0 || secondTspCity != 0))//eg: 0 2 433
+                            {
+                                tspSolOrder.Add(firstTspCity);
+                            }
+                        }
                     }
                     return tspSolOrder;
                 }
