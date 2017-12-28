@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using MakerSweet.Web.Data;
 using MakerSweet.Web.Services;
 using MakerSweet.Services.Helpers;
+using MakerSweet.Services;
 
 namespace MakerSweet.Web
 {
@@ -48,6 +49,7 @@ namespace MakerSweet.Web
             services.AddScoped<ITspConverter, TspConverter>();
             services.AddScoped<IGcodeCreator,GCodeCreator>();
             services.AddScoped<ILinifier, Linifier>();
+            services.AddScoped<IConvertImageType, ConvertImageType>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -1,0 +1,31 @@
+﻿@page
+@model MakerSweet.Web.Pages.ConvertImageTypeModel
+@{
+    ViewData["Title"] = "ConvertImageType";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>Convert Image Type</h2>
+
+<div>
+    <small>Choose the file which you wish to convert!</small>
+</div>
+
+<div class="alert-info">
+    @Model.Message
+</div>
+
+<form asp-action="ConvertImageType" method="post">
+    <div>
+        @Html.LabelFor(x => x.FileName) (Currently, only JPG to PNG conversions are supported)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.FileName, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER, @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.FileName)
+    </div>
+    <div class="btnDiv">
+        <button class="btn btn-default" type="submit">Submit</button>
+    </div>
+</form>
