@@ -50,6 +50,7 @@ namespace MakerSweet.Web
             services.AddScoped<IGcodeCreator,GCodeCreator>();
             services.AddScoped<ILinifier, Linifier>();
             services.AddScoped<IConvertImageType, ConvertImageType>();
+            services.AddScoped<IImageColorConverter, ImageColorConverter>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
