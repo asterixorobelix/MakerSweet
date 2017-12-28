@@ -1,0 +1,41 @@
+﻿@page
+@model MakerSweet.Web.Pages.LinifierModel
+@{
+    ViewData["Title"] = "Linifier";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>Linifier</h2>
+
+<div>
+    <small>Choose the settings for the file which you wish to linify!</small>
+</div>
+<img class=" image img-responsive" src="~/images/linify_2017-12-26_20-04.png" />
+
+<div class="alert-info">
+    @Model.Message
+</div>
+<form asp-action="Stippler" method="post">
+    <div>
+        @Html.LabelFor(x => x.FileName) (Currently, only XXX files are supported)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.FileName, new { @placeholder = Constants.FILE_NAME_PLACEHOLDER, @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.FileName)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.NumberOfLines)
+    </div>
+
+    <div>
+        @Html.TextBoxFor(x => x.NumberOfLines, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.NumberOfLines)
+    </div>
+    <div class="btnDiv">
+        <button class="btn btn-default" type="submit">Submit</button>
+    </div>
+</form>

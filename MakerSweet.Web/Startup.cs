@@ -47,6 +47,7 @@ namespace MakerSweet.Web
             services.AddScoped<IStippler, Stippler>();
             services.AddScoped<ITspConverter, TspConverter>();
             services.AddScoped<IGcodeCreator,GCodeCreator>();
+            services.AddScoped<ILinifier, Linifier>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

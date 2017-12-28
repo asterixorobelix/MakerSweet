@@ -20,5 +20,6 @@ namespace MakerSweet.Web
         public const double PLUNGE_FEEDRATE_DEFAULT = 30;
         public const double TARGET_DEPTH_DEFAULT = 3.5;
         public const double STEP_OVER_DEFAULT = 0.4;
+        public const int LINE_NUMBER_DEFAULT = 2000;
     }
 }
