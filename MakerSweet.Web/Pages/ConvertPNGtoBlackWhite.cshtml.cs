@@ -27,7 +27,12 @@ namespace MakerSweet.Web.Pages
         {
             if (ModelState.IsValid)
             {
-                Message = $"The file {_imageColorConverter.ConvertPNGtoBlackWhite(FileName)} has successfully converted to black and white!";
+                status =_imageColorConverter.ConvertPNGtoBlackWhite(FileName);
+                if (status.Split(null)[0] != Constants.FAILURE)
+                {
+                    Message = $"The file {status} has successfully converted to black and white!";
+                }
+                Message = $"The file {status} has was not converted to black and white";
                 return Page();
             }
             return Page();
@@ -39,5 +44,7 @@ namespace MakerSweet.Web.Pages
         public string FileName { get; set; }
 
         public string Message { get; set; }
+
+        public string status { get; set; }
     }
 }
