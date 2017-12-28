@@ -5,7 +5,7 @@
     Layout = "~/Pages/_Layout.cshtml";
 }
 
-<h2>Convert Image Type</h2>
+<h2>Convert JPG to PNG</h2>
 
 <div>
     <small>Choose the file which you wish to convert!</small>
@@ -15,7 +15,7 @@
     @Model.Message
 </div>
 
-<form asp-action="ConvertImageType" method="post">
+<form asp-action="ConvertJPGtoPNG" method="post">
     <div>
         @Html.LabelFor(x => x.FileName) (Currently, only JPG to PNG conversions are supported)
     </div>
