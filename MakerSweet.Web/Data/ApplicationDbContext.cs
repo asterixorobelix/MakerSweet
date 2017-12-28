@@ -14,6 +14,8 @@ namespace MakerSweet.Web.Data
         {
         }
 
+        public DbSet<DrillBit> DrillBits { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);

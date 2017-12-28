@@ -13,18 +13,20 @@ namespace MakerSweet.Services.Helpers
             try
             {
                 using (FileStream stream = new FileStream(path: $"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{filename}.jpg", mode: FileMode.Open))
-                using (FileStream output = new FileStream(path: $"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{filename}.png", mode: FileMode.Create))
                 {
-                    using (Image image = new Image(stream))
+                    using (FileStream output = new FileStream(path: $"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{filename}.png", mode: FileMode.Create))
                     {
-                        image.Save(output);
+                        using (Image image = new Image(stream))
+                        {
+                            image.Save(output);
+                        }
                     }
+                    return $"{filename}.png";
                 }
-                return $"{filename}.png";
             }
             catch (Exception e)
             {
-                return $"{Constants.FAILURE}-Unable to find file{filename}. {e.Message}";
+                return $"{Constants.FAILURE} - Unable to find file: {filename}. {e.Message}";
             }            
         }
     }
