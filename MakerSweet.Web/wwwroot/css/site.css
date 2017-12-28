@@ -45,3 +45,7 @@ body {
 .btnDiv{
     padding-top:20px;
 }
+
+.dropdown-menu > li > a {
+    color: darkgrey;
+}
