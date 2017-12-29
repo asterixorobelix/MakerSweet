@@ -30,6 +30,9 @@ http://imageprocessor.org/
 GCode
 http://www.warrensbrain.com/gcode-to-english-translator.html
 https://gorest.co.in/tools/gcode-translator.html
+http://thomasrickard.uk/articles/part-6:-design-app,-holes-06-06-2016.html
+http://thomasrickard.uk/articles/part-7:-design-app,-profiles-10-06-2016.html
+http://thomasrickard.uk/collections/makeit.html
 https://github.com/gradientspace/gsGCode
 https://www.marginallyclever.com/product/makelangelo-software/
 https://github.com/MarginallyClever/Makelangelo-software

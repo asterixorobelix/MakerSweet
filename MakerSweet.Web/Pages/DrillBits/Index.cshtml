@@ -1,0 +1,17 @@
+﻿@page
+@model MakerSweet.Web.Pages.DrillBits.IndexModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Pages/_Layout.cshtml";
+}
+
+<h2>Drill Bits</h2>
+
+@foreach (DrillBit bit in Model.DrillBits)
+{
+<div>
+    @bit.BitDiameter
+</div>
+    
+}
+
