@@ -1,4 +1,4 @@
-﻿using ImageSharp;
+﻿using SixLabors.ImageSharp;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -12,17 +12,11 @@ namespace MakerSweet.Services.Helpers
         {
             try
             {
-                using (FileStream stream = new FileStream(path: $"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{filename}.jpg", mode: FileMode.Open))
+                using (Image<Rgba32> image =Image.Load<Rgba32>($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{filename}.jpg"))
                 {
-                    using (FileStream output = new FileStream(path: $"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{filename}.png", mode: FileMode.Create))
-                    {
-                        using (Image image = new Image(stream))
-                        {
-                            image.Save(output);
-                        }
-                    }
-                    return $"{filename}.png";
+                    image.Save($"{Constants.INPUTOUTPUT_FOLDER_RELATIVE_PATH}{filename}.png");
                 }
+                return $"{filename}.png";
             }
             catch (Exception e)
             {

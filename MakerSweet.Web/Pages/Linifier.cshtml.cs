@@ -16,6 +16,7 @@ namespace MakerSweet.Web.Pages
         {
             _linifier = linifier;
             NumberOfLines = Constants.LINE_NUMBER_DEFAULT;
+            NumberOfPins = Constants.NUMBER_OF_PINS_DEFAULT;
         }
 
         public IActionResult OnGet()
@@ -27,7 +28,7 @@ namespace MakerSweet.Web.Pages
         {
             if (ModelState.IsValid)
             {
-                _linifier.Linfiy(FileName, NumberOfLines);
+                _linifier.Linfiy(FileName, NumberOfLines, NumberOfPins);
                 return Page();
             }
             return Page();
@@ -42,6 +43,11 @@ namespace MakerSweet.Web.Pages
         [Range(100, 100000)]
         [Display(Name = "Number of lines")]
         public int NumberOfLines { get; set; }
+        [BindProperty]
+        [Required]
+        [Range(100, 100000)]
+        [Display(Name = "Number of pins")]
+        public int NumberOfPins { get; set; }
 
         public string Message { get; set; }
     }

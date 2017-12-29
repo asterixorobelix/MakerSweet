@@ -28,12 +28,20 @@
     <div>
         @Html.LabelFor(x => x.NumberOfLines)
     </div>
-
     <div>
         @Html.TextBoxFor(x => x.NumberOfLines, new { @class = "form-control" })
     </div>
     <div>
         @Html.ValidationMessageFor(x => x.NumberOfLines)
+    </div>
+    <div>
+        @Html.LabelFor(x => x.NumberOfPins)
+    </div>
+    <div>
+        @Html.TextBoxFor(x => x.NumberOfPins, new { @class = "form-control" })
+    </div>
+    <div>
+        @Html.ValidationMessageFor(x => x.NumberOfPins)
     </div>
     <div class="btnDiv">
         <button class="btn btn-default" type="submit">Submit</button>

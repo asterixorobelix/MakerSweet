@@ -30,9 +30,12 @@ namespace MakerSweet.Web.Pages
                 status =_imageColorConverter.ConvertPNGtoBlackWhite(FileName);
                 if (status.Split(null)[0] != Constants.FAILURE)
                 {
-                    Message = $"The file {status} has successfully converted to black and white!";
+                    Message = $"The file {status} has successfully been created!";
                 }
-                Message = $"The file {status} has was not converted to black and white";
+                else
+                {
+                    Message = $"The file {status} was not converted to black and white";
+                }
                 return Page();
             }
             return Page();

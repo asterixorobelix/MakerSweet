@@ -6,6 +6,6 @@ namespace MakerSweet.Services.Helpers
 {
     public interface ILinifier
     {
-        string Linfiy(string filename, int numberOfLines);
+        string Linfiy(string filename, int numberOfLines, int numberOfPins);
     }
 }

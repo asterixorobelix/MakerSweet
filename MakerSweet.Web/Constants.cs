@@ -23,5 +23,6 @@ namespace MakerSweet.Web
         public const int LINE_NUMBER_DEFAULT = 2000;
         public const string SUCCESS = "Success";
         public const string FAILURE = "Failure";
+        public const int NUMBER_OF_PINS_DEFAULT = 200;
     }
 }
